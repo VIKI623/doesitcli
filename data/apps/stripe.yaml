@@ -1,0 +1,24 @@
+displayName: Stripe
+homepage: https://stripe.com/
+cliType: standalone
+region: global
+cliInstall:
+  - command: brew install stripe/stripe-cli/stripe
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/stripe/stripe-cli
+officialDocsUrl: https://docs.stripe.com/stripe-cli
+status: active
+category: devops
+tags: [payments, webhooks, financial, testing]
+oneLiner: Test Stripe integrations locally by forwarding webhooks and triggering API events.
+description: >
+  The Stripe CLI streamlines payment integration development by letting you forward webhook
+  events to your local server, trigger test events, and tail API request logs in real time.
+  It removes the need for ngrok-style tunnels during webhook development and provides direct
+  access to Stripe API resources from the terminal.
+useCases:
+  - forward Stripe webhook events to a local development server for testing
+  - trigger specific Stripe events to verify integration handling logic
+  - tail and inspect live API request logs for debugging payment flows
+alternativesTo: []

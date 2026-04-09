@@ -1,0 +1,24 @@
+displayName: Dashlane
+homepage: https://www.dashlane.com/
+cliType: standalone
+region: global
+cliInstall:
+  - command: brew install dashlane/tap/dashlane-cli
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/Dashlane/dashlane-cli
+officialDocsUrl: https://cli.dashlane.com/
+status: active
+category: infra
+tags: [password-manager, enterprise, security, secrets]
+oneLiner: Retrieve Dashlane vault credentials and inject secrets into CI/CD pipelines.
+description: >
+  The Dashlane CLI provides non-interactive access to your Dashlane vault, designed primarily
+  for CI/CD and automation use cases. It can read passwords, secure notes, and OTP codes from
+  the vault and pipe them into scripts or environment variables. The tool supports device
+  registration and master-password or SSO authentication for enterprise environments.
+useCases:
+  - retrieve vault credentials in CI/CD pipelines without human interaction
+  - inject secrets as environment variables into automated build processes
+  - read one-time passwords programmatically for automated login flows
+alternativesTo: [1Password, Bitwarden]
