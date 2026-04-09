@@ -1,0 +1,27 @@
+displayName: Visual Studio Code
+homepage: https://code.visualstudio.com
+cliType: embedded
+region: global
+cliInstall:
+  - command: "Shell Command: Install 'code' command in PATH"
+    official: true
+skillInstall:
+  - command: npx ai-agent-skills install frontend-design --agent vscode
+    official: true
+openSourceDocsUrl: https://github.com/microsoft/vscode
+officialDocsUrl: https://code.visualstudio.com/docs/editor/command-line
+status: active
+category: coding
+tags: [ide, editor, extension, agent]
+oneLiner: Microsoft's extensible code editor with a powerful embedded CLI for workspace management.
+description: >
+  Visual Studio Code provides a robust embedded command-line interface (`code`).
+  The CLI allows developers and autonomous agents to open files, install extensions,
+  compare diffs, and manage user profiles directly from the terminal. It acts as
+  the primary bridge for agentic tools to manipulate the developer's active workspace
+  without requiring manual GUI navigation.
+useCases:
+  - programmatically open specific directories or files from a shell script
+  - install, uninstall, or update VS Code extensions via CI/CD pipelines
+  - output file differences directly into the terminal using the `--diff` flag
+alternativesTo: []

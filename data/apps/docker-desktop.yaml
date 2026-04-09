@@ -1,0 +1,25 @@
+displayName: Docker Desktop
+homepage: https://www.docker.com/products/docker-desktop
+cliType: embedded
+region: global
+cliInstall:
+  - command: brew install --cask docker
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/docker
+officialDocsUrl: https://docs.docker.com/desktop/setup/install/mac-install/
+status: active
+category: devops
+tags: [containers, virtualization, kubernetes, infrastructure]
+oneLiner: Securely build, share, and run containerized applications with Docker CLI synergy.
+description: >
+  Docker Desktop provides a seamless GUI over the complex Docker engine, managing
+  VMs, volumes, and Kubernetes clusters. The `docker` and `docker-compose` CLI commands
+  are deeply embedded, routing commands from the host OS to the underlying virtualized
+  Linux kernel. This allows DevOps teams to inspect container layers and manage image
+  sizes efficiently from the terminal while monitoring resource usage visually.
+useCases:
+  - orchestrate multi-container environments using `docker-compose up` via CI/CD
+  - execute dive commands to explore Docker image layers and optimize storage
+  - manage local Kubernetes contexts seamlessly alongside the Docker CLI
+alternativesTo: []

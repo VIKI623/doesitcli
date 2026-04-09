@@ -1,0 +1,19 @@
+# doesitcli sponsor slots — App Store-style "Top recommended".
+#
+# Rules (enforced in code, not just convention):
+# - At most ONE active sponsor at any time. Multiple → only the first is shown.
+# - Sponsor MUST be a real, working CLI tool that fits the directory's quality bar.
+#   We do not accept advertising for off-topic products. No third-party ad scripts. Ever.
+# - Visual weight identical to a Featured card; clearly labelled "Sponsored".
+# - Also surfaced in /llms.txt under the "Sponsored" optional section, transparent to agents.
+# - Empty `slots:` list → no sponsor; the slot disappears entirely.
+
+slots: []
+
+# Example (uncomment to activate):
+# slots:
+#   - slug: cursor              # must match an existing data/apps/<slug>.yaml
+#     headline: "Try the AI editor agents love"
+#     ctaLabel: "Install Cursor"
+#     ctaUrl: "https://www.cursor.com/?utm_source=doesitcli"
+#     activeUntil: "2026-05-01"

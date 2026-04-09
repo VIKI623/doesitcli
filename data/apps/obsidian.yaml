@@ -1,0 +1,27 @@
+displayName: Obsidian
+homepage: https://obsidian.md/
+cliType: embedded
+region: global
+cliInstall:
+  - command: export PATH="$PATH:/Applications/Obsidian.app/Contents/MacOS"
+    official: true
+skillInstall:
+  - command: npx skills add jackal092927/obsidian-official-cli-skills
+    official: true
+openSourceDocsUrl: null
+officialDocsUrl: https://obsidian.md/cli
+status: active
+category: content
+tags: [pkm, markdown, notes, local-first]
+oneLiner: A powerful local-first knowledge base operating on a folder of plain text files.
+description: >
+  With version 1.12, Obsidian introduced an official command-line interface.
+  This CLI enables terminal users to query vault properties, create notes, and
+  trigger deep application events without touching the GUI. For AI coding agents,
+  the `obsidian` command acts as a gateway to local RAG (Retrieval-Augmented Generation),
+  allowing models to read, write, and link knowledge dynamically.
+useCases:
+  - append tasks to a daily note automatically using `obsidian daily:append`
+  - enable coding agents to search the vault and construct structural mappings of ideas
+  - export metadata and unresolved links via JSON to build custom analytics dashboards
+alternativesTo: []

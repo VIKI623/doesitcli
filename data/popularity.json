@@ -1,0 +1,205 @@
+{
+  "generatedAt": "2026-04-09T05:43:53.672Z",
+  "apps": {
+    "1password": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 57949,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "alibaba-cloud": {
+      "npm_downloads_30d": 0,
+      "github_stars": 938,
+      "brew_installs_30d": 1341,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 49
+    },
+    "apifox": {
+      "npm_downloads_30d": 8063,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "baidu-netdisk": {
+      "npm_downloads_30d": 0,
+      "github_stars": 4821,
+      "brew_installs_30d": 126,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 61
+    },
+    "cursor": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "dingtalk": {
+      "npm_downloads_30d": 358,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "docker-desktop": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 61366,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "feishu": {
+      "npm_downloads_30d": 57956,
+      "github_stars": 7136,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 64
+    },
+    "figma": {
+      "npm_downloads_30d": 2489250,
+      "github_stars": 1463,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 52
+    },
+    "fork": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "github-cli": {
+      "npm_downloads_30d": 0,
+      "github_stars": 43666,
+      "brew_installs_30d": 331260,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 77
+    },
+    "linear": {
+      "npm_downloads_30d": 15372,
+      "github_stars": 573,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 46
+    },
+    "netease-music": {
+      "npm_downloads_30d": 1255,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "notion": {
+      "npm_downloads_30d": 1693,
+      "github_stars": 121,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 34
+    },
+    "obsidian": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "postman": {
+      "npm_downloads_30d": 16922,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "raycast": {
+      "npm_downloads_30d": 101160,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "sketch": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "slack": {
+      "npm_downloads_30d": 0,
+      "github_stars": 213,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 38
+    },
+    "tailscale": {
+      "npm_downloads_30d": 0,
+      "github_stars": 30284,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 74
+    },
+    "tencent-cloud": {
+      "npm_downloads_30d": 0,
+      "github_stars": 116,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 34
+    },
+    "tower": {
+      "npm_downloads_30d": 0,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "vscode": {
+      "npm_downloads_30d": 0,
+      "github_stars": 183598,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 87
+    },
+    "wecom": {
+      "npm_downloads_30d": 4830,
+      "github_stars": 0,
+      "brew_installs_30d": 0,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 0
+    },
+    "zed": {
+      "npm_downloads_30d": 0,
+      "github_stars": 78743,
+      "brew_installs_30d": 9662,
+      "agent_pings_30d": 0,
+      "human_clicks_30d": 0,
+      "heat": 81
+    }
+  }
+}

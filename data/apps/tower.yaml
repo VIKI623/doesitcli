@@ -1,0 +1,25 @@
+displayName: Tower
+homepage: https://www.git-tower.com/
+cliType: embedded
+region: global
+cliInstall:
+  - command: echo "alias gtower='gittower `git rev-parse --show-toplevel`'" >> ~/.bash_profile
+    official: true
+skillInstall: []
+openSourceDocsUrl: null
+officialDocsUrl: https://www.git-tower.com/help/guides/integration/cli-tool/mac
+status: active
+category: coding
+tags: [git, version-control, gui, productivity]
+oneLiner: The most powerful Git client for Mac and Windows with a native `gittower` CLI.
+description: >
+  Tower is renowned for its robust handling of advanced Git operations like interactive
+  rebasing and submodules. The `gittower` CLI tool empowers developers to instantly
+  summon Tower's visual interface for the current terminal directory. This creates a
+  highly efficient hybrid workflow, utilizing the terminal for speed and Tower for
+  complex history manipulation.
+useCases:
+  - launch the visual interactive rebase interface from a terminal script
+  - visually inspect staging areas for specific submodules located via shell commands
+  - recover lost commits using the visual Reflog triggered from the command line
+alternativesTo: []

@@ -1,0 +1,25 @@
+displayName: Fork
+homepage: https://git-fork.com/
+cliType: embedded
+region: global
+cliInstall:
+  - command: ln -s /Applications/Fork.app/Contents/Resources/fork_cli /usr/local/bin/fork
+    official: true
+skillInstall: []
+openSourceDocsUrl: null
+officialDocsUrl: https://git-fork.com/releasenotes
+status: active
+category: coding
+tags: [git, version-control, performance, native]
+oneLiner: A fast and friendly Git client for Mac and Windows with custom CLI commands.
+description: >
+  Fork is a lightning-fast, native Git client. Its command-line utility enables
+  users to open repositories directly from the shell. A unique feature of Fork is
+  its "Custom Commands" architecture, which allows developers to define UI-based
+  actions that execute underlying shell scripts or CLI tools, creating a bidirectional
+  workflow between the GUI and the terminal.
+useCases:
+  - immediately open the current directory's Git history tree with `fork.`
+  - define custom UI buttons in Fork that trigger complex terminal deployment scripts
+  - integrate external diff tools via CLI configurations triggered from the GUI
+alternativesTo: []

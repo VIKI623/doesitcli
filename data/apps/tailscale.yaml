@@ -1,0 +1,25 @@
+displayName: Tailscale
+homepage: https://tailscale.com/
+cliType: embedded
+region: global
+cliInstall:
+  - command: tailscale completion bash > $(brew --prefix)/etc/bash_completion.d/tailscale
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/tailscale/tailscale
+officialDocsUrl: https://tailscale.com/docs/reference/tailscale-cli
+status: active
+category: infra
+tags: [vpn, network, zero-trust, wireguard]
+oneLiner: A secure, zero-config VPN built on WireGuard with an indispensable CLI client.
+description: >
+  While Tailscale offers a seamless menu bar GUI on macOS for network management,
+  the `tailscale` CLI exposes advanced routing capabilities. It allows administrators
+  to configure exit nodes, expose local subnets, and integrate Kubernetes clusters.
+  The CLI is essential for configuring headless servers or enabling AI agents to
+  tunnel securely into private corporate networks to execute queries.
+useCases:
+  - configure local machines as exit nodes or subnet routers via terminal flags
+  - generate and manage ephemeral authentication keys for short-lived CI/CD runners
+  - inspect peer connections and network latency using `tailscale status` and `ping`
+alternativesTo: []

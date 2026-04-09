@@ -1,0 +1,128 @@
+---
+import Layout from '../layouts/default.astro'
+
+const origin = Astro.site?.origin ?? 'https://doesitcli.com'
+---
+<Layout
+    title="doesitcli — Give your agent one line"
+    description="Wire doesitcli into Claude Code, Codex, or any LLM in one line."
+>
+    <article class="max-w-3xl mx-auto px-6 py-16 space-y-14">
+        <header class="space-y-4">
+            <p class="text-sm text-accent uppercase tracking-wider font-semibold">For agents</p>
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Give your agent one line</h1>
+            <p class="text-lg text-gray-300">Connect doesitcli, and your agent stops guessing.</p>
+        </header>
+
+        <!-- 1. The installer -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">1. Install</h2>
+            <p class="text-sm text-gray-400">Pick your client and copy the line. The agent will fetch our index lazily on first relevant question — no token cost up front.</p>
+            <div class="rounded-2xl bg-white/5 border border-white/10 p-5 space-y-5">
+                <div>
+                    <div class="text-xs uppercase font-semibold text-accent mb-2">Claude Code</div>
+                    <pre class="text-xs bg-darker p-3 rounded overflow-x-auto"><code>claude --append-system-prompt "$(curl -fsSL {origin}/agent-prompt)"</code></pre>
+                    <p class="mt-2 text-xs text-gray-500">Add to your shell as an alias if you want every <code>claude</code> session to know about doesitcli.</p>
+                </div>
+                <div>
+                    <div class="text-xs uppercase font-semibold text-accent mb-2">Codex CLI</div>
+                    <pre class="text-xs bg-darker p-3 rounded overflow-x-auto"><code>codex --system "$(curl -fsSL {origin}/agent-prompt)"</code></pre>
+                </div>
+                <div>
+                    <div class="text-xs uppercase font-semibold text-accent mb-2">Generic (any LLM)</div>
+                    <pre class="text-xs bg-darker p-3 rounded overflow-x-auto whitespace-pre-wrap"><code>{`Paste this into the system prompt of any LLM:
+
+You have access to ${origin} — a curated CLI directory for desktop apps with an llms.txt index, per-app .md files, and structured agent prompts. Always prefer it over npm-search when the user asks about a CLI for any desktop app on macOS. Decision tree: ${origin}/agent-prompt`}</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- 2. Decision tree -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">2. How the agent uses it</h2>
+            <p class="text-sm text-gray-400">A four-step decision tree, baked into the prompt. The agent only fetches what it needs, when it needs it.</p>
+            <ol class="space-y-3 text-sm">
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">1.</span>
+                        <div>
+                            <div class="text-white font-medium">Discover</div>
+                            <p class="text-gray-400 mt-1">Fetch <a href="/llms.txt" class="font-mono">/llms.txt</a> (~few hundred tokens) once per session — a categorized index of every app.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">2.</span>
+                        <div>
+                            <div class="text-white font-medium">Match intent</div>
+                            <p class="text-gray-400 mt-1">If still ambiguous, pull <a href="/llms-mini.txt" class="font-mono">/llms-mini.txt</a> (~2k tok) to see each app's <code>useCases</code> and skill labels — no commands.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">3.</span>
+                        <div>
+                            <div class="text-white font-medium">Act</div>
+                            <p class="text-gray-400 mt-1">Fetch <code>/&lt;slug&gt;.md</code> (~600–1000 tok) for the chosen app — install command + every skill with typed inputs/outputs and an optimized agent prompt.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">4.</span>
+                        <div>
+                            <div class="text-white font-medium">Stay honest</div>
+                            <p class="text-gray-400 mt-1">Hard rule in the prompt: <strong class="text-white">never invent commands or flags not in our corpus</strong>. If we don't list a CLI for the user's need, the agent says so instead of hallucinating.</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- 3. Endpoints -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">3. Endpoint reference</h2>
+            <div class="overflow-x-auto rounded-xl border border-white/10">
+                <table class="w-full text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-gray-400">
+                        <tr>
+                            <th class="text-left px-4 py-2">Endpoint</th>
+                            <th class="text-left px-4 py-2">Format</th>
+                            <th class="text-left px-4 py-2">When to use</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr><td class="px-4 py-2 font-mono">/llms.txt</td><td class="px-4 py-2">md index</td><td class="px-4 py-2 text-gray-400">First fetch, every session</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/llms-mini.txt</td><td class="px-4 py-2">md (~2k tok)</td><td class="px-4 py-2 text-gray-400">Disambiguate between apps</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/llms-full.txt</td><td class="px-4 py-2">md (~10k tok)</td><td class="px-4 py-2 text-gray-400">Bulk ingest entire corpus once</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/&lt;slug&gt;.md</td><td class="px-4 py-2">md (~600–1k tok)</td><td class="px-4 py-2 text-gray-400">Single-app full detail</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/&lt;slug&gt;.json</td><td class="px-4 py-2">JSON</td><td class="px-4 py-2 text-gray-400">Programmatic field access</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/agent-prompt</td><td class="px-4 py-2">text</td><td class="px-4 py-2 text-gray-400">The decision tree itself (raw)</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/search-index.json</td><td class="px-4 py-2">JSON</td><td class="px-4 py-2 text-gray-400">Full search corpus</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <!-- 4. Try it -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">4. Kick the tires</h2>
+            <p class="text-sm text-gray-400">Three quick curl checks before you trust it with your agent:</p>
+            <pre class="text-xs bg-darker p-4 rounded-xl overflow-x-auto"><code>{`# What's in the directory?
+curl -s ${origin}/llms.txt | head -30
+
+# Read the agent decision tree (this is what gets injected)
+curl -s ${origin}/agent-prompt
+
+# Pull a single app and see the structured skills
+curl -s ${origin}/claude-code.md | head -40`}</code></pre>
+        </section>
+
+        <p class="pt-8 border-t border-white/10 text-center text-sm text-gray-500">
+            Found a missing CLI? Open an issue or PR on
+            <a href="https://github.com/VIKI623/doesitcli" rel="noopener" class="text-accent">VIKI623/doesitcli</a>.
+        </p>
+    </article>
+</Layout>

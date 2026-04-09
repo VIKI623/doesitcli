@@ -1,0 +1,28 @@
+displayName: Raycast
+homepage: https://www.raycast.com/
+cliType: embedded
+region: global
+cliInstall:
+  - command: npx @raycast/api@latest
+    official: true
+skillInstall:
+  - command: npx skillfish add bendrucker/claude raycast
+    official: true
+openSourceDocsUrl: null
+officialDocsUrl: https://developers.raycast.com/information/developer-tools/cli
+status: active
+highlight: 78
+category: productivity
+tags: [launcher, macos, extensions, scripting]
+oneLiner: A blazingly fast, totally extendable launcher with native CLI development tools.
+description: >
+  Raycast redefines the macOS launcher by prioritizing developer experience. While
+  its UI is entirely native, it relies heavily on its internal `ray` CLI for extension
+  development and hot-reloading. Additionally, it exposes Agent Client Protocols (ACP),
+  allowing AI coding assistants like Claude Code to integrate directly with Raycast's
+  UI capabilities, bridging terminal commands with graphical system prompts.
+useCases:
+  - scaffold, lint, and build custom React-based UI extensions using the `ray` command
+  - trigger complex AppleScript or Keyboard Maestro workflows via child processes
+  - allow AI agents to output native macOS notifications or modify the clipboard
+alternativesTo: []

@@ -1,0 +1,202 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+import Layout from '../layouts/default.astro'
+import { slugOf } from '../lib/render-md'
+import { getPopularity } from '../lib/popularity'
+import Stars from '../components/Stars.astro'
+import Comments from '../components/Comments.vue'
+
+export async function getStaticPaths() {
+    const apps = await getCollection('apps')
+    return apps.map((app) => ({
+        params: { slug: slugOf(app) },
+        props: { app },
+    }))
+}
+
+interface Props { app: CollectionEntry<'apps'> }
+const { app } = Astro.props
+const { data } = app
+const slug = slugOf(app)
+const origin = Astro.site?.origin ?? 'https://doesitcli.com'
+const heat = getPopularity(slug).heat
+
+// Editor-provided install commands. Derive a short tool label from each
+// command (npm/brew/bun/script) so chip labels match what the user pastes,
+// instead of all reading "official".
+function toolOf(command: string): string {
+    const c = command.trim()
+    if (/^npm\s/.test(c)) return 'npm'
+    if (/^npx\s/.test(c)) return 'npx'
+    if (/^bun\s/.test(c)) return 'bun'
+    if (/^brew install\s+--cask/.test(c)) return 'brew cask'
+    if (/^brew\s/.test(c)) return 'brew'
+    if (/^cargo\s/.test(c)) return 'cargo'
+    if (/^pip3?\s/.test(c)) return 'pip'
+    if (/^deno\s/.test(c)) return 'deno'
+    if (/curl|wget|\/bin\/(ba)?sh/.test(c)) return 'script'
+    return c.split(/\s+/)[0] || 'install'
+}
+const installs = data.cliInstall.map((c) => ({ ...c, tool: toolOf(c.command) }))
+
+---
+<Layout title={`${data.displayName} — doesitcli`} description={data.oneLiner}>
+    <Fragment slot="head">
+        <link rel="alternate" type="text/markdown" href={`/${slug}.md`} />
+        <link rel="alternate" type="application/json" href={`/${slug}.json`} />
+        <script is:inline type="application/ld+json" set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'SoftwareApplication',
+            name: data.displayName,
+            description: data.oneLiner,
+            applicationCategory: data.category,
+            operatingSystem: 'macOS',
+            url: `${origin}/${slug}`,
+            sameAs: [data.homepage],
+            offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+        })} />
+    </Fragment>
+
+    <article class="max-w-3xl mx-auto px-6 py-16 space-y-12">
+        <header class="space-y-4">
+            <div class="flex items-center gap-3 flex-wrap">
+                <h1 class="text-4xl font-bold text-white">{data.displayName}</h1>
+                <span class="px-2 py-0.5 text-xs rounded bg-accent/20 text-accent uppercase">{data.status}</span>
+                <span class="px-2 py-0.5 text-xs rounded bg-white/10 text-gray-300">{data.category}</span>
+                <Stars heat={heat} size="md" showNumber />
+            </div>
+            <p class="text-base text-gray-300">{data.description}</p>
+            <div class="flex flex-wrap gap-4 text-sm">
+                <a href={data.homepage} rel="noopener">{data.homepage} →</a>
+                {(() => {
+                    const docsLink = data.officialDocsUrl ?? data.officialDocsUrl
+                    const srcLink  = data.openSourceDocsUrl ?? data.openSourceDocsUrl
+                    return <>
+                        {docsLink && docsLink !== data.homepage && (
+                            <a href={docsLink} rel="noopener" class="text-gray-400 hover:text-white">Docs →</a>
+                        )}
+                        {srcLink && !docsLink?.includes(srcLink) && (
+                            <a href={srcLink} rel="noopener" class="text-gray-400 hover:text-white">Source →</a>
+                        )}
+                    </>
+                })()}
+            </div>
+            <div class="flex flex-wrap gap-2">
+                {data.tags.map((t) => <span class="px-2 py-0.5 text-xs rounded bg-white/10 text-gray-300">#{t}</span>)}
+            </div>
+        </header>
+
+        <!-- Install: row of method chips, click to switch the panel below.
+             First chip (npm-preferred) is selected by default. -->
+        <section class="space-y-3">
+            <div class="flex items-baseline justify-between flex-wrap gap-3">
+                <h2 class="text-xl font-semibold text-white" data-i18n="app.install">⌨️ Install</h2>
+                {installs.length > 1 && (
+                    <div class="flex flex-wrap gap-1.5 install-chips">
+                        {installs.map((c, i) => (
+                            <button
+                                type="button"
+                                class={`install-chip px-2.5 py-1 text-xs rounded-full border transition ${i === 0 ? 'bg-accent/15 text-accent border-accent/40' : 'bg-white/5 text-gray-300 border-white/10 hover:bg-white/10'}`}
+                                data-target={i}
+                                aria-pressed={i === 0 ? 'true' : 'false'}
+                            >{c.tool}</button>
+                        ))}
+                    </div>
+                )}
+            </div>
+            {installs.length === 0 && data.cliType === 'embedded' ? (
+                <p class="text-sm text-gray-400">
+                    The CLI is bundled with the desktop app — download from{' '}
+                    <a href={data.homepage} rel="noopener">{data.homepage}</a>.
+                </p>
+            ) : (
+                <div class="install-panels space-y-3">
+                    {installs.map((c, i) => (
+                        <div class="install-panel" data-index={i} style={i === 0 ? '' : 'display:none'}>
+                            <div class="p-4 rounded-xl bg-white/5 border border-white/10">
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-xs font-semibold text-accent">{c.tool}</span>
+                                    {!c.official && <span class="text-[10px] text-gray-500">community</span>}
+                                </div>
+                                <pre class="text-sm bg-darker p-3 rounded overflow-x-auto"><code>{c.command}</code></pre>
+                            </div>
+                        </div>
+                    ))}
+                </div>
+            )}
+        </section>
+
+        <!-- What it can do — high-level intent phrases. We're a directory,
+             not a CLI manual; the actual command details live in the agent skill. -->
+        {data.useCases.length > 0 && (
+            <section class="space-y-3">
+                <h2 class="text-xl font-semibold text-white" data-i18n="app.skills.h2">What it can do</h2>
+                <ul class="space-y-1.5 text-sm text-gray-300">
+                    {data.useCases.map((u) => (
+                        <li class="flex gap-2">
+                            <span class="text-accent shrink-0">›</span>
+                            <span>{u}</span>
+                        </li>
+                    ))}
+                </ul>
+            </section>
+        )}
+
+        {data.alternativesTo.length > 0 && (
+            <section class="text-sm text-gray-400">
+                <span class="text-gray-500">Similar to: </span>
+                {data.alternativesTo.map((alt, i) => (
+                    <>
+                        {i > 0 && <span class="text-gray-600"> · </span>}
+                        <span class="text-gray-300">{alt}</span>
+                    </>
+                ))}
+            </section>
+        )}
+
+        {data.skillInstall.length > 0 && (
+            <section class="space-y-3">
+                <h2 class="text-xl font-semibold text-white">Install as agent skill</h2>
+                {data.skillInstall.map((s) => (
+                    <div>
+                        <pre class="text-xs bg-darker p-4 rounded-xl overflow-x-auto whitespace-pre-wrap"><code>{s.command}</code></pre>
+                        {!s.official && <p class="mt-1 text-[10px] text-gray-500">community-maintained</p>}
+                    </div>
+                ))}
+                <p class="text-[11px] text-gray-500">Raw payload: <a href={`/${slug}.md`} class="font-mono">{slug}.md</a> · <a href={`/${slug}.json`} class="font-mono">{slug}.json</a></p>
+            </section>
+        )}
+
+        <Comments client:visible slug={slug} />
+    </article>
+
+    <script is:inline>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Generic single-select chip group: highlight the active chip and
+            // show the panel whose data-attr matches the chip's value.
+            function wireChipGroup(chipSel, chipAttr, panelSel, panelAttr) {
+                const chips = document.querySelectorAll(chipSel)
+                const panels = document.querySelectorAll(panelSel)
+                chips.forEach((chip) => {
+                    chip.addEventListener('click', () => {
+                        const target = chip.getAttribute(chipAttr)
+                        chips.forEach((c) => {
+                            const active = c.getAttribute(chipAttr) === target
+                            c.setAttribute('aria-pressed', active ? 'true' : 'false')
+                            c.classList.toggle('bg-accent/15', active)
+                            c.classList.toggle('text-accent', active)
+                            c.classList.toggle('border-accent/40', active)
+                            c.classList.toggle('bg-white/5', !active)
+                            c.classList.toggle('text-gray-300', !active)
+                            c.classList.toggle('border-white/10', !active)
+                        })
+                        panels.forEach((p) => {
+                            p.style.display = p.getAttribute(panelAttr) === target ? '' : 'none'
+                        })
+                    })
+                })
+            }
+            wireChipGroup('.install-chip', 'data-target', '.install-panel', 'data-index')
+        })
+    </script>
+</Layout>

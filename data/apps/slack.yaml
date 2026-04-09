@@ -1,0 +1,27 @@
+displayName: Slack
+homepage: https://slack.com/
+cliType: standalone
+region: global
+cliInstall:
+  - command: curl -fsSL https://downloads.slack-edge.com/slack-cli/install.sh | bash
+    official: true
+skillInstall:
+  - command: npx skills add vercel-labs/slack-agent-skill
+    official: true
+openSourceDocsUrl: https://github.com/slackapi/slack-cli
+officialDocsUrl: https://docs.slack.dev/tools/slack-cli/
+status: active
+category: collaboration
+tags: [chat, team, automation, bot]
+oneLiner: The operating system for team collaboration, enhanced by the developer CLI.
+description: >
+  The Slack CLI empowers developers to create, deploy, and manage next-generation
+  Slack apps and bots directly from the terminal. Through tools like Vercel's Slack
+  Agent Skill, developers can employ LLMs to scaffold complex ChatOps workflows,
+  configure OAuth scopes, and setup event subscriptions iteratively without relying
+  on the sluggish web-based API console.
+useCases:
+  - bootstrap a new Deno-based Slack application via the `slack create` command
+  - rapidly deploy test environments using Enterprise Grid sandboxes via `slack run`
+  - automate the notification of CI/CD pipeline failures directly into specific channels
+alternativesTo: []
