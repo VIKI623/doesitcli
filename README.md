@@ -15,7 +15,7 @@ Each entry has: install commands (official + community), what it can do, agent s
 ## Add an app
 
 One PR adds one app. See [CONTRIBUTING.md](CONTRIBUTING.md) for the schema and rules.
-Example PR: [#2 — add Bruno](https://github.com/VIKI623/doesitcli/pull/2).
+Example PR: [#2 — add Bruno](https://github.com/VIKI623/doesitcli/pull/3).
 
 ## Agent access
 

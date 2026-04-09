@@ -15,7 +15,7 @@ doesitcli 回答 **"X 有 CLI 吗？"** 这个问题。
 ## 添加应用
 
 一个 PR 添加一个应用。Schema 和规则见 [CONTRIBUTING.zh-CN.md](CONTRIBUTING.zh-CN.md)。
-PR 样例：[#2 — add Bruno](https://github.com/VIKI623/doesitcli/pull/2)。
+PR 样例：[#2 — add Bruno](https://github.com/VIKI623/doesitcli/pull/3)。
 
 ## Agent 接入
 
