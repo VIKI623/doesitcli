@@ -1,0 +1,25 @@
+displayName: Sketch
+homepage: https://www.sketch.com/
+cliType: embedded
+region: global
+cliInstall:
+  - command: export PATH="$PATH:/Applications/Sketch.app/Contents/MacOS"
+    official: true
+skillInstall: []
+openSourceDocsUrl: null
+officialDocsUrl: https://developer.sketch.com/cli/
+status: active
+category: design
+tags: [mac-native, vector, design, export]
+oneLiner: The pioneering Mac-native vector design tool equipped with the `sketchtool` CLI.
+description: >
+  Sketch revolutionized UI design and established early programmatic access via
+  `sketchtool`. Bundled directly inside the Sketch application bundle, this binary
+  allows developers to inspect document structures, export artboards to various
+  formats, and trigger plugins headlessly. It is a fundamental building block for
+  automated design handoff and continuous integration pipelines for assets.
+useCases:
+  - batch export hundreds of artboards or slices to PNG/SVG via a single shell command
+  - dump the JSON tree of a `.sketch` file to programmatically update text localizations
+  - run custom JavaScript plugins headlessly to recalculate layout frames before export
+alternativesTo: []

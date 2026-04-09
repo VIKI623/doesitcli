@@ -1,0 +1,16 @@
+name = "doesitcli-api"
+main = "src/index.mjs"
+compatibility_date = "2026-03-01"
+
+# Served at https://doesitcli.com/api/* — takes precedence over Pages
+routes = [
+  { pattern = "doesitcli.com/api/*", zone_name = "doesitcli.com" },
+  { pattern = "www.doesitcli.com/api/*", zone_name = "doesitcli.com" },
+]
+
+[[d1_databases]]
+binding = "DB"
+database_name = "doesitcli"
+database_id = "5cc6ff09-0322-4461-ab93-9688e72308f4"
+
+# HASH_SECRET is set via: wrangler secret put HASH_SECRET

@@ -1,0 +1,26 @@
+displayName: NetEase Cloud Music (网易云音乐)
+homepage: https://developer.music.163.com/
+cliType: standalone
+region: china
+cliInstall:
+  - command: npm install -g @music163/ncm-cli
+    official: true
+skillInstall:
+  - command: npx skills add https://github.com/NetEase/skills
+    official: true
+openSourceDocsUrl: null
+officialDocsUrl: https://developer.music.163.com/st/developer/document?docId=c5cb8108c73b42c8bec8869b26a15738
+status: active
+category: productivity
+tags: [music, media, tui, agent]
+oneLiner: Official NetEase Cloud Music CLI featuring a TUI player and AI agent integration.
+description: >
+  The `@music163/ncm-cli` brings the NetEase Cloud Music experience to the terminal.
+  It features a full TUI player with synchronized lyrics and vinyl animations. More
+  importantly, it exposes agent skills that allow AI assistants to search songs,
+  play music, and curate daily recommendations using natural language.
+useCases:
+  - control music playback globally via terminal commands (`ncm-cli play`)
+  - allow AI agents to generate context-aware playlists (e.g., "songs for coding")
+  - use the TUI player for distraction-free listening inside a terminal multiplexer
+alternativesTo: []

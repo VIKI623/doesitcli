@@ -1,0 +1,25 @@
+displayName: Zed
+homepage: https://zed.dev
+cliType: embedded
+region: global
+cliInstall:
+  - command: brew install --cask zed
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/zed-industries/zed
+officialDocsUrl: https://zed.dev/docs/reference/cli
+status: active
+category: coding
+tags: [ide, rust, performance, multiplayer]
+oneLiner: A high-performance, multiplayer code editor written in Rust with a built-in CLI.
+description: >
+  Zed is engineered for extreme performance and collaborative development.
+  Its command-line tool (`zed`) is installed via the command palette and allows
+  users to establish Zed as the default `$EDITOR` for Git operations. It provides
+  instantaneous workspace loading, which is highly beneficial for terminal-heavy
+  workflows where speed is paramount.
+useCases:
+  - set as the default `$EDITOR` for Git commit messages using `export EDITOR="zed --wait"`
+  - rapidly pipe command outputs or open massive directories without UI lag
+  - initiate multiplayer coding sessions directly from a specific repository path
+alternativesTo: []

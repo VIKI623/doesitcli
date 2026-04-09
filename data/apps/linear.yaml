@@ -1,0 +1,27 @@
+displayName: Linear
+homepage: https://linear.app/
+cliType: standalone
+region: global
+cliInstall:
+  - command: npm install -D @schpet/linear-cli
+    official: true
+skillInstall:
+  - command: npx skills add Finesssee/linear-cli
+    official: true
+openSourceDocsUrl: https://github.com/schpet/linear-cli
+officialDocsUrl: https://linear.app/docs/mcp
+status: active
+category: collaboration
+tags: [project-management, agile, issue-tracking, agent]
+oneLiner: Purpose-built issue tracking for modern teams and AI agents.
+description: >
+  Linear revolutionized issue tracking with a keyboard-centric GUI. The `linear-cli`
+  brings this speed to the terminal, allowing developers to list, query, and start
+  issues directly from their Git workspace. Furthermore, Linear's official MCP server
+  and community skills drastically reduce the context window size required for AI
+  agents to manage project state, bypassing heavy web interfaces.
+useCases:
+  - create a new Git branch and mark an issue as "In Progress" automatically via `linear start`
+  - allow coding agents to query outstanding bugs and attach PRs directly from the editor
+  - search and filter issues across all teams programmatically using human-readable tags
+alternativesTo: []

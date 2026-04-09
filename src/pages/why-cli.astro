@@ -1,0 +1,273 @@
+---
+import Layout from '../layouts/default.astro'
+---
+<Layout
+    title="Why We Need CLI? — doesitcli"
+    description="Why the next Agent OS will center on CLI plus Skills."
+>
+    <Fragment slot="head">
+        <style is:global>
+            html[lang="en"] .lang-zh { display: none; }
+            html[lang="zh"] .lang-en { display: none; }
+
+            .essay {
+                /* Editorial serif for body, sans-serif inherits for headings.
+                   All system fonts — no network fetch, zero FOUT. */
+                font-family: Charter, "Iowan Old Style", "Source Serif Pro", Georgia, Cambria, "Times New Roman", serif;
+                font-feature-settings: "kern", "liga", "onum";
+            }
+            .essay h1,
+            .essay h2 {
+                font-family: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+                letter-spacing: -0.015em;
+            }
+            .essay h1 {
+                font-size: 2.5rem;
+                line-height: 1.1;
+                font-weight: 700;
+                color: #fff;
+                margin-top: 0.6rem;
+            }
+            .essay h2 {
+                font-size: 1.5rem;
+                line-height: 1.25;
+                font-weight: 650;
+                color: #fff;
+                margin-top: 0.2rem;
+            }
+            .essay p {
+                color: rgb(219 223 232);
+                line-height: 1.78;
+                font-size: 1.06rem;
+                margin: 0;
+            }
+            .essay a { color: rgb(255 139 106); }
+            .essay ol,
+            .essay ul {
+                color: rgb(209 213 219);
+                margin: 0;
+                padding-left: 1.2rem;
+                line-height: 1.8;
+            }
+            .essay li + li { margin-top: 0.5rem; }
+            .essay code {
+                background: rgba(255,255,255,0.08);
+                padding: 0.12em 0.4em;
+                border-radius: 4px;
+                font-size: 0.92em;
+            }
+            .essay .meta {
+                color: rgb(120 130 150);
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                font-weight: 600;
+                font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            }
+            .essay .callout {
+                margin: 1.4rem 0;
+                padding: 1.5rem 2rem;
+                background: rgba(255, 255, 255, 0.04);
+                border: 1px solid rgba(255, 255, 255, 0.08);
+                border-radius: 12px;
+                font-size: 1.08rem;
+                line-height: 1.8;
+            }
+            .essay .callout p { color: rgb(232 237 247); font-size: 1.08rem; }
+            .essay .callout ul { color: rgb(232 237 247); margin-top: 0.8rem; list-style: none; padding-left: 0; }
+            .essay .callout li + li { margin-top: 0.4rem; }
+            html.light .essay .callout {
+                background: rgba(15, 23, 42, 0.03);
+                border-color: rgba(15, 23, 42, 0.1);
+            }
+            html.light .essay .callout p,
+            html.light .essay .callout ul { color: #1e293b; }
+
+            .essay .lede {
+                color: rgb(232 237 247);
+                font-size: 1.18rem;
+                line-height: 1.65;
+                font-weight: 450;
+            }
+            .essay .section {
+                display: grid;
+                gap: 1rem;
+                padding-top: 1.6rem;
+                border-top: 1px solid rgba(255,255,255,0.08);
+            }
+            .essay .section-kicker {
+                color: rgb(255 139 106);
+                font-size: 0.78rem;
+                text-transform: uppercase;
+                letter-spacing: 0.14em;
+                font-weight: 650;
+                font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            }
+            .essay .references {
+                font-family: ui-sans-serif, system-ui, -apple-system, sans-serif;
+            }
+            .essay .references {
+                font-size: 0.9rem;
+                color: rgb(148 163 184);
+                list-style: none;
+                padding-left: 0;
+                counter-reset: refs;
+                line-height: 1.7;
+            }
+            .essay .references li {
+                counter-increment: refs;
+                padding-left: 2.6rem;
+                text-indent: -2.6rem;
+                margin-bottom: 0.75rem;
+            }
+            .essay .references li::before {
+                content: "[" counter(refs) "]";
+                display: inline-block;
+                width: 2.2rem;
+                margin-right: 0.4rem;
+                color: rgb(255 139 106);
+                font-variant-numeric: tabular-nums;
+                font-weight: 600;
+                text-indent: 0;
+            }
+            .essay .references em { font-style: italic; color: rgb(203 213 225); }
+            html.light .essay .references { color: #64748b; }
+            html.light .essay .references em { color: #0f172a; }
+
+            html.light .essay h1,
+            html.light .essay h2 {
+                color: #0f172a;
+            }
+            html.light .essay p,
+            html.light .essay li { color: #334155; }
+            html.light .essay .lede { color: #1f2937; }
+            html.light .essay .meta,
+            html.light .essay .references { color: #64748b; }
+            html.light .essay .section { border-color: rgba(15,23,42,0.08); }
+            html.light .essay code { background: rgba(15,23,42,0.06); }
+        </style>
+    </Fragment>
+
+    <article class="essay max-w-3xl mx-auto px-6 py-16">
+        <div class="flex items-start justify-between gap-4 mb-8">
+            <div>
+                <p class="meta"><span class="lang-en">Apr 9, 2026 · 4 min read</span><span class="lang-zh">2026 年 4 月 9 日 · 阅读约 4 分钟</span></p>
+            </div>
+            <button
+                data-lang-toggle
+                class="shrink-0 px-3 py-1.5 rounded-full border border-white/10 bg-white/5 text-xs text-gray-300 hover:text-white hover:bg-white/10"
+                aria-label="Toggle language"
+            >EN / 中文</button>
+        </div>
+
+        <div class="lang-en space-y-10">
+            <section class="space-y-5">
+                <h1>Why the next Agent OS will center on CLI + Skills</h1>
+                <p class="lede">GUI was the right answer when the main user of software was a human being who needed translation. Agents change that assumption. Once the operator is a system that thinks in language, tools, parameters, and structured state, the center of interaction starts to move.</p>
+                <p>If there is one historical parallel worth keeping in mind, it is not "a smarter chatbot." It is the GUI revolution itself: the moment Windows and Mac OS displaced DOS. That revolution moved the center of interaction away from command syntax and into the GUI. The next one may move the center again: voice and text become the natural entry point, CLI + Skills become the execution substrate, and GUI stops being the primary site of operation.</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">1. History</p>
+                <h2>GUI was the right answer for the last era</h2>
+                <p>Early command-line systems were efficient, but they assumed a trained operator. Personal computing changed the user base. Computers were no longer built only for engineers, operators, and specialists; they were being opened to office workers, students, designers, and families.</p>
+                <p>For those users, the main problem was not raw capability. It was translation. They needed visible objects, consistent controls, a lower memory burden, and a safer way to issue machine instructions. GUI solved that problem. That is why it won.</p>
+                <p>The important point is that GUI did not replace the machine contract underneath. Software still ran on commands, files, processes, RPCs, and database updates. GUI reorganized those capabilities into something ordinary users could learn and trust. For forty years, that was the correct optimization target, because humans were the bottleneck.</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">2. Now</p>
+                <h2>Why agents need CLI</h2>
+                <p>Agents can drive a GUI through browser automation or computer-use models. But that is a compatibility technique, not an ideal substrate. It is slower, more brittle, and more ambiguous than calling an explicit capability directly.</p>
+                <p>Agents perform best when actions are named, parameters are typed, output is structured, and failure states are visible. CLI offers exactly that. It gives the model a stable verb, a clear input surface, parseable output, and a way to chain capabilities together without guessing what a button means today.</p>
+                <div class="callout">
+                    <p>Put differently, the reason we keep returning to CLI is not nostalgia for black-screen terminals. It is that CLI provides a low-ambiguity execution contract with at least four properties:</p>
+                    <ul>
+                        <li>▸ Actions and parameters are explicitly callable, not buried inside a visual hierarchy.</li>
+                        <li>▸ Output is structured, so the next step can parse, validate, and reuse it directly.</li>
+                        <li>▸ Capabilities compose, so multi-step workflows are not trapped inside any single product's UI.</li>
+                        <li>▸ Failure modes, permission scopes, and logs are all inspectable — supervision, replay, and recovery become tractable.</li>
+                    </ul>
+                </div>
+                <p>API and CLI are the same thing in essence. But in desktop software, local tools, and mixed human-agent workflows, CLI remains the most practical way to expose an executable contract. It is scriptable, reviewable, composable, and easy to adopt incrementally.</p>
+                <p>This changes product economics. Once software demand is increasingly mediated by agents, a feature that exists only inside a deep GUI flow becomes harder to reach, harder to recommend, and harder to compose into a workflow. What used to be a UX detail starts becoming a distribution problem.</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">3. Next</p>
+                <h2>What happens to GUI in an Agent OS</h2>
+                <p>The next Agent OS will not look like a desktop copied into a chat window. Its primary interaction model will be language: speaking, typing, delegating, confirming. Underneath that, the system will need a real execution layer made of callable tools. That is where CLI + Skills comes in.</p>
+                <p>CLI provides the executable surface. Skills provide discovery, packaging, typed metadata, permissions, and reuse. Together they turn scattered capabilities into something an agent can reliably find, install, invoke, and combine.</p>
+                <p>GUI does not disappear, but its role evolves. It stops feeling like a maze the user has to walk through layer by layer, and starts feeling like a results pane — surfacing state, previews, diffs, and risk warnings, then asking for confirmation at the key checkpoints. In other words, the GUI that remains is no longer where users <em>complete</em> operations; it is where they <em>understand outcomes and authorise milestones</em>.</p>
+                <p>That is why we expect future software to become flatter. Fewer nested controls. Fewer brittle workflows. Fewer screens whose only job is to manually walk the user through steps an agent could execute directly. The richer the agent layer becomes, the simpler the GUI can afford to be. The point is not to drag humans back into terminal life; the point is that software now needs an execution contract that is honest to agents. Once that contract exists, voice and text can become the front door, CLI + Skills can become the machinery underneath, and GUI no longer has to pretend to be the whole operating model.</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">References</p>
+                <ol class="references">
+                    <li>Ritchie, D. M., &amp; Thompson, K. (1974). The UNIX Time-Sharing System. <em>Communications of the ACM</em>, 17(7), 365–375. <a href="https://doi.org/10.1145/361011.361061" rel="noopener">doi.org/10.1145/361011.361061</a></li>
+                    <li>Engelbart, D. C., &amp; English, W. K. (1968). A Research Center for Augmenting Human Intellect. <em>Proceedings of the Fall Joint Computer Conference (AFIPS '68)</em>, 395–410. <a href="https://doi.org/10.1145/1476589.1476645" rel="noopener">doi.org/10.1145/1476589.1476645</a></li>
+                    <li>Shneiderman, B. (1983). Direct Manipulation: A Step Beyond Programming Languages. <em>IEEE Computer</em>, 16(8), 57–69. <a href="https://doi.org/10.1109/MC.1983.1654471" rel="noopener">doi.org/10.1109/MC.1983.1654471</a></li>
+                    <li>Anthropic. (2025). Claude Code overview. <a href="https://docs.anthropic.com/en/docs/claude-code/overview" rel="noopener">docs.anthropic.com/en/docs/claude-code/overview</a></li>
+                    <li>Anthropic. (2025). Agent Skills. <a href="https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills" rel="noopener">docs.anthropic.com/en/docs/agents-and-tools/agent-skills</a></li>
+                    <li>Model Context Protocol. (2025). Specification and SDKs. <a href="https://modelcontextprotocol.io/" rel="noopener">modelcontextprotocol.io</a></li>
+                </ol>
+            </section>
+        </div>
+
+        <div class="lang-zh space-y-10">
+            <section class="space-y-5">
+                <h1>为什么下一代 Agent OS 会以 CLI + Skills 为核心</h1>
+                <p class="lede">当软件的主要使用者还是人类时，GUI 是正确答案；因为人需要一层翻译，才能稳定地操作计算机。但 Agent 改变了这个前提。当操作者变成一个以语言、工具、参数和结构化状态为工作对象的系统，交互中心就会开始迁移。</p>
+                <p>如果一定要找一个最贴切的历史参照，不是”聊天框变得更聪明了”，而是当年 Windows / macOS 对 DOS 的取代。那场 GUI 交互变革，把交互中心从命令语法转移到了图形界面；而下一场变革，很可能会再次改写这个中心。对 Agent 来说，语音和文本会成为天然入口，CLI + Skills 会成为真正的执行底座，而 GUI 将不再承担主要操作本身。</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">1. 历史</p>
+                <h2>GUI 是上一代交互问题的正确答案</h2>
+                <p>早期命令行系统效率很高，但它默认操作者受过训练。个人计算时代到来之后，计算机不再只服务工程师、操作员和专业人员，而开始面向办公室职员、学生、设计师和普通家庭用户。</p>
+                <p>对这些用户来说，真正的问题不是算力够不够，而是怎么把机器能力翻译成人能掌握的交互方式。他们需要可见对象、一致控件、更低的记忆负担，以及更低的误操作成本。GUI 解决的正是这个问题，所以它才成为主流。</p>
+                <p>这里要看清的一点是：GUI 并没有替换机器底层的契约。软件真正依赖的仍然是命令、文件、进程、RPC 和数据库变更。GUI 只是把这些能力重新组织成普通人能学会、能信任、能稳定使用的交互形式。在过去四十年里，这当然是对的，因为瓶颈一直在人。</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">2. 当下</p>
+                <h2>为什么 Agent 需要 CLI</h2>
+                <p>Agent 当然也可以操作 GUI，通过浏览器自动化、computer-use 模型或视觉识别去“看屏幕、点按钮”。但那更像一种兼容手段，而不是理想底座。它更慢、更脆、更依赖页面细节，也更容易把简单任务拖成一长串不稳定步骤。</p>
+                <p>Agent 擅长的不是“理解一个按钮今天摆在哪里”，而是处理显式动作、类型化参数、结构化输出和清晰的失败状态。CLI 恰好提供了这一整套东西：稳定的动词、清楚的输入面、可解析的输出，以及把多个能力串起来的组合方式。</p>
+                <div class="callout">
+                    <p>换句话说，我们强调 CLI，并不是因为怀念黑底白字终端，而是因为它提供了一份低歧义的执行契约，至少包含四个性质：</p>
+                    <ul>
+                        <li>▸ 动作和参数显式可调用，而不是被埋进视觉层级。</li>
+                        <li>▸ 输出是结构化的，可以被下一步直接解析、校验、复用。</li>
+                        <li>▸ 能力之间可以组合，多步工作流不必被困在某一个产品的 UI 边界里。</li>
+                        <li>▸ 失败模式、权限边界和日志全部可检查，监督、回放与恢复都是可行的。</li>
+                    </ul>
+                </div>
+                <p>API 和 CLI 在本质上是一回事。但在桌面软件、本地工具和人机协作环境里，CLI 仍然是最现实的执行契约。它便于脚本化，便于审阅，便于组合，也便于渐进式接入，而不用先把整套产品重新做一遍。</p>
+                <p>这还会改变软件的分发逻辑。一旦越来越多的软件需求由 Agent 代为发起和筛选，那些只藏在复杂 GUI 流程里的功能，会变得更难触达、更难被推荐，也更难被编排进工作流。原来只是体验细节的东西，会逐渐变成分发问题。</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">3. 未来</p>
+                <h2>Agent OS 里，GUI 会变成什么</h2>
+                <p>下一代 Agent OS 不会只是“把桌面塞进聊天框里”。它的主交互会以语言为中心：说、写、委托、确认。在这个交互模型下面，系统必须有一套真正的执行层，能够稳定调用工具和能力。这正是 CLI + Skills 的位置。</p>
+                <p>CLI 提供可执行表面，Skills 提供发现、封装、权限、元数据和复用能力。两者合在一起，才会把零散的软件功能变成 Agent 可以稳定找到、安装、调用、串联的对象。</p>
+                <p>GUI 不会消失，但角色会变。它会从一座需要人层层穿越的操作迷宫，逐渐演化成一个结果面板：把状态、预览、diff 和风险提示集中呈现，让用户在关键节点完成确认。换句话说，留下来的 GUI 不再是用户"完成操作"的地方，而是用户"理解结果、授权里程碑"的地方。</p>
+                <p>所以我们判断，未来软件的 GUI 会逐渐变得更扁平。层层嵌套的控件会减少，脆弱的多步流程会减少，那些只是为了引导人手动走完一串步骤而存在的页面也会减少。Agent 层越强，GUI 就越没有必要继续膨胀。这并不是要把人重新赶回终端，而是说软件必须开始提供一份对 Agent 足够诚实的执行契约。一旦这件事成立，语音和文本就会自然变成入口，CLI + Skills 会成为下面那套真正工作的机械结构，GUI 也就没有必要继续假装自己是整套交互模型的全部。</p>
+            </section>
+
+            <section class="section">
+                <p class="section-kicker">参考文献</p>
+                <ol class="references">
+                    <li>Ritchie, D. M., &amp; Thompson, K. (1974). The UNIX Time-Sharing System. <em>Communications of the ACM</em>, 17(7), 365–375. <a href="https://doi.org/10.1145/361011.361061" rel="noopener">doi.org/10.1145/361011.361061</a></li>
+                    <li>Engelbart, D. C., &amp; English, W. K. (1968). A Research Center for Augmenting Human Intellect. <em>Proceedings of the Fall Joint Computer Conference (AFIPS '68)</em>, 395–410. <a href="https://doi.org/10.1145/1476589.1476645" rel="noopener">doi.org/10.1145/1476589.1476645</a></li>
+                    <li>Shneiderman, B. (1983). Direct Manipulation: A Step Beyond Programming Languages. <em>IEEE Computer</em>, 16(8), 57–69. <a href="https://doi.org/10.1109/MC.1983.1654471" rel="noopener">doi.org/10.1109/MC.1983.1654471</a></li>
+                    <li>Anthropic. (2025). Claude Code overview. <a href="https://docs.anthropic.com/en/docs/claude-code/overview" rel="noopener">docs.anthropic.com/en/docs/claude-code/overview</a></li>
+                    <li>Anthropic. (2025). Agent Skills. <a href="https://docs.anthropic.com/en/docs/agents-and-tools/agent-skills" rel="noopener">docs.anthropic.com/en/docs/agents-and-tools/agent-skills</a></li>
+                    <li>Model Context Protocol. (2025). Specification and SDKs. <a href="https://modelcontextprotocol.io/" rel="noopener">modelcontextprotocol.io</a></li>
+                </ol>
+            </section>
+        </div>
+    </article>
+</Layout>

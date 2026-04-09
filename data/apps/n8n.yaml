@@ -1,0 +1,24 @@
+displayName: n8n
+homepage: https://n8n.io/
+cliType: standalone
+region: global
+cliInstall:
+  - command: npm install -g n8n
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/n8n-io/n8n
+officialDocsUrl: https://docs.n8n.io/hosting/cli-commands/
+status: active
+category: devops
+tags: [workflow-automation, low-code, integrations]
+oneLiner: Self-hostable workflow automation platform with CLI commands for execution and management.
+description: >
+  n8n is a fair-code workflow automation tool that connects hundreds of services via a visual
+  editor. Its CLI lets you start the server, execute workflows headlessly, import and export
+  workflow definitions, and manage credentials from the terminal. This makes it straightforward
+  to self-host n8n and operate it in Docker or CI environments without the web UI.
+useCases:
+  - start a self-hosted n8n instance and execute workflows from the command line
+  - import and export workflow JSON definitions for version control or migration
+  - manage stored credentials and reset user accounts via terminal commands
+alternativesTo: []

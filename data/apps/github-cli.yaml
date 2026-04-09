@@ -1,0 +1,26 @@
+displayName: GitHub
+homepage: https://cli.github.com/
+cliType: standalone
+region: global
+cliInstall:
+  - command: brew install gh
+    official: true
+skillInstall:
+  - command: npx agent-skills-cli install @github/github-issues
+    official: true
+openSourceDocsUrl: https://github.com/cli/cli
+officialDocsUrl: https://cli.github.com/manual/
+status: active
+category: coding
+tags: [git, github, version-control, collaboration, standalone]
+oneLiner: GitHub's official command line tool to manage repositories, issues, and PRs.
+description: >
+  While GitHub Desktop exists for GUI users, GitHub CLI (`gh`) is the standalone standard
+  bringing pull requests, issues, and other GitHub concepts to the terminal. It provides
+  deep integration with GitHub's APIs, allowing developers and AI agents to fully manage
+  the SDLC and repository states without touching the web UI.
+useCases:
+  - check out pull requests locally and review code via the terminal
+  - create, label, and manage issues programmatically
+  - trigger and monitor GitHub Actions workflows from external shell scripts
+alternativesTo: []
