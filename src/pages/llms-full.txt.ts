@@ -12,7 +12,7 @@ export const GET: APIRoute = async ({ site }) => {
     )
     const origin = site?.origin ?? 'https://doesitcli.com'
 
-    const body = apps.map((app) => renderAppMarkdown(app, origin)).join('\n\n---\n\n')
+    const body = apps.map((app) => renderAppMarkdown(app)).join('\n\n---\n\n')
     const tokens = approxTokens(body)
 
     const header = [

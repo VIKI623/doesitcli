@@ -12,7 +12,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const GET: APIRoute = ({ props, site }) => {
     const app = props.app as Awaited<ReturnType<typeof getCollection<'apps'>>>[number]
     const origin = site?.origin ?? 'https://doesitcli.com'
-    const md = renderAppMarkdown(app, origin)
+    const md = renderAppMarkdown(app)
     return new Response(md, {
         headers: { 'content-type': 'text/markdown; charset=utf-8' },
     })

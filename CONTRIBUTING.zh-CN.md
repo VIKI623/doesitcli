@@ -2,13 +2,13 @@
 
 [English](CONTRIBUTING.md) | **中文**
 
-doesitcli 是一个人工维护的桌面应用 CLI 目录。一个 PR 添加一个应用。
+doesitcli 是一个社区维护的桌面应用 CLI 目录。一个 PR 添加一个应用。
 **人类贡献者**和 **AI Agent** 都欢迎 — 规则尽量精简。
 
 ## 快速开始
 
 1. 复制 [`data/apps/_template.yaml`](data/apps/_template.yaml) → `data/apps/<slug>.yaml`（kebab-case 命名，如 `obsidian.yaml`）。
-2. 按下方 Schema 填写。**所有字段人工维护**，禁止爬虫自动生成。
+2. 按下方 Schema 填写。
 3. 使用 [app-submission 模板](.github/PULL_REQUEST_TEMPLATE/app-submission.md) 提交 PR。
 4. 维护者 review → 合并 → 站点自动部署。
 

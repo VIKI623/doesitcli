@@ -15,7 +15,7 @@ export const GET: APIRoute = async ({ site }) => {
     const apps = await getCollection('apps')
     let perAppTok = 0
     for (const app of apps) {
-        perAppTok += approxTokens(renderAppMarkdown(app, origin))
+        perAppTok += approxTokens(renderAppMarkdown(app))
     }
     const perAppAvg = Math.round(perAppTok / Math.max(1, apps.length))
 

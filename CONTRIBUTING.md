@@ -9,7 +9,7 @@ are short on purpose.
 ## TL;DR
 
 1. Copy [`data/apps/_template.yaml`](data/apps/_template.yaml) → `data/apps/<slug>.yaml` (kebab-case slug, e.g. `obsidian.yaml`).
-2. Fill the schema below. **Every field is human-curated.** No bots, no scrapers.
+2. Fill the schema below. 
 3. Open a PR using the [app-submission template](.github/PULL_REQUEST_TEMPLATE/app-submission.md).
 4. Maintainer reviews → merges → site auto-deploys.
 

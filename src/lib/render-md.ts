@@ -15,12 +15,13 @@ function fmtTokens(n: number): string {
     return `~${n} tok`
 }
 
-/** Mini rendition: name, oneLiner, install. Enough to pick an app. */
+/** Mini rendition: name, oneLiner, install, detail path. Enough to pick and act. */
 export function renderAppMini(app: App): string {
     const d = app.data
+    const slug = slugOf(app)
     const primaryInstall = d.cliInstall[0]
     const out: string[] = [
-        `- **${d.displayName}**: ${d.oneLiner}`,
+        `- **${d.displayName}** → /${slug}.md: ${d.oneLiner}`,
     ]
     if (primaryInstall) out.push(`  install: \`${primaryInstall.command}\``)
     if (d.alternativesTo.length) out.push(`  alt: ${d.alternativesTo.join(', ')}`)
@@ -28,7 +29,7 @@ export function renderAppMini(app: App): string {
 }
 
 /** Full agent-friendly Markdown for a single app. */
-export function renderAppMarkdown(app: App, siteOrigin = 'https://doesitcli.com'): string {
+export function renderAppMarkdown(app: App): string {
     const d = app.data
     const slug = slugOf(app)
     const url = `/${slug}`

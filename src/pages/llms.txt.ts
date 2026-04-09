@@ -11,7 +11,7 @@ export const GET: APIRoute = async ({ site }) => {
     const perAppFull = new Map<string, number>()
     let fullTotal = 0
     for (const app of apps) {
-        const md = renderAppMarkdown(app, origin)
+        const md = renderAppMarkdown(app)
         const t = approxTokens(md)
         perAppFull.set(slugOf(app), t)
         fullTotal += t
