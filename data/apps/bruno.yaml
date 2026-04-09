@@ -1,0 +1,24 @@
+displayName: Bruno  # app name
+homepage: https://www.usebruno.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g @usebruno/cli
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/usebruno/bruno  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://docs.usebruno.com/bru-cli/overview  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [api]  # one or more categories
+tags: [api-client, testing, open-source, rest]  # free-form lowercase tags
+oneLiner: Open-source API client with a Git-friendly CLI for running collections in CI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Bruno is an open-source API client that stores collections as plain files on your filesystem,
+  making them easy to version-control with Git. The Bru CLI lets you execute entire request
+  collections from the terminal, enabling automated API testing in CI/CD without cloud sync.
+  Collections use a simple markup format that is human-readable and diff-friendly.
+intents:  # what a user or agent would want to DO
+  - run API request collections in CI pipelines without a cloud account
+  - version-control API collections alongside application source code
+  - execute environment-specific API tests from the terminal
+alternativesTo: [Postman, Insomnia, Apifox]  # similar app names; [] if none
