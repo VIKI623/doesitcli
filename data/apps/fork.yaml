@@ -1,0 +1,25 @@
+displayName: Fork  # app name
+homepage: https://git-fork.com/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask fork
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://git-fork.com/releasenotes  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [coding]  # one or more categories
+tags: [git, version-control, performance, native]  # free-form lowercase tags
+oneLiner: A fast and friendly Git client for Mac and Windows with custom CLI commands.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Fork is a lightning-fast, native Git client. Its command-line utility enables
+  users to open repositories directly from the shell. A unique feature of Fork is
+  its "Custom Commands" architecture, which allows developers to define UI-based
+  actions that execute underlying shell scripts or CLI tools, creating a bidirectional
+  workflow between the GUI and the terminal.
+intents:  # what a user or agent would want to DO
+  - immediately open the current directory's Git history tree with `fork.`
+  - define custom UI buttons in Fork that trigger complex terminal deployment scripts
+  - integrate external diff tools via CLI configurations triggered from the GUI
+alternativesTo: []  # similar app names; [] if none

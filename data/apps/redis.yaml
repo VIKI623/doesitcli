@@ -1,0 +1,24 @@
+displayName: Redis  # app name
+homepage: https://redis.io/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install redis
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/redis/redis  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://redis.io/docs/latest/operate/oss_and_stack/install/  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [database]  # one or more categories
+tags: [database, caching, memory, key-value]  # free-form lowercase tags
+oneLiner: In-memory data store with a built-in CLI for key-value operations and server management.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Redis ships with redis-cli, a terminal client for interacting with any Redis server. You can
+  get and set keys, run Lua scripts, monitor commands in real time, and perform cluster
+  administration. It is the primary tool for debugging, benchmarking, and managing Redis
+  instances outside of application code.
+intents:  # what a user or agent would want to DO
+  - inspect and manipulate cached keys on a running Redis instance
+  - monitor live command traffic for debugging application behavior
+  - perform cluster failover, replication setup, and memory diagnostics
+alternativesTo: []  # similar app names; [] if none

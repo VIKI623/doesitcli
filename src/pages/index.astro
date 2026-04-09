@@ -1,0 +1,412 @@
+---
+import { getCollection, type CollectionEntry } from 'astro:content'
+type App = CollectionEntry<'apps'>
+import Layout from '../layouts/default.astro'
+import { slugOf } from '../lib/render-md'
+import { getPopularity } from '../lib/popularity'
+import { getActiveSponsor } from '../lib/sponsors'
+import Stars from '../components/Stars.astro'
+
+const sponsor = getActiveSponsor()
+const sponsorApp = sponsor
+    ? (await getCollection('apps')).find((a) => slugOf(a) === sponsor.slug)
+    : null
+
+const allApps = await getCollection('apps')
+
+// Derive display badges from app data
+function badgesOf(app: App) {
+    const d = app.data
+    const cli = d.cliType === 'embedded' ? 'embedded' : 'standalone'
+    const hasOfficial = d.cliInstall.some((c) => c.official)
+    const hasCommunity = d.cliInstall.some((c) => !c.official)
+    const src = hasOfficial && hasCommunity ? 'official + community' : hasOfficial ? 'official' : hasCommunity ? 'community' : ''
+    const hasSkills = d.skillInstall.length > 0
+    return { cli, src, hasSkills }
+}
+const heatOf = (slug: string) => getPopularity(slug).heat
+const byHeat = (a: App, b: App) => heatOf(slugOf(b)) - heatOf(slugOf(a))
+
+// Highlight uses an editorial `highlight` number from yaml (0-100) if set,
+// otherwise falls back to the public heat. This is our curation lever: any
+// closed-source app with a real story can still be featured by hand.
+const rankOf = (a: App) => a.data.highlight ?? heatOf(slugOf(a))
+
+// Heat-ordered list shown under "All apps".
+const apps = [...allApps].sort(byHeat)
+
+// Highlight: standalone + official CLI, prefer apps with skills.
+// Sort by: has-skills first, then by rank.
+const isHighlightWorthy = (a: App) => {
+    const d = a.data
+    return d.cliType === 'standalone' && d.cliInstall.some((c) => c.official)
+}
+const bySkillsThenRank = (a: App, b: App) => {
+    const sa = a.data.skillInstall.length > 0 ? 1 : 0
+    const sb = b.data.skillInstall.length > 0 ? 1 : 0
+    if (sb !== sa) return sb - sa
+    return rankOf(b) - rankOf(a)
+}
+const highlightGlobal = allApps.filter((a) => a.data.region === 'global' && isHighlightWorthy(a)).sort(bySkillsThenRank).slice(0, 4)
+const highlightChina = allApps.filter((a) => a.data.region === 'china' && isHighlightWorthy(a)).sort(bySkillsThenRank).slice(0, 4)
+
+// Derive categories from data, sort by app count (descending).
+const catCount = new Map<string, number>()
+for (const a of allApps) for (const c of a.data.categories) catCount.set(c, (catCount.get(c) ?? 0) + 1)
+const usedCategories = [...catCount.entries()].sort((a, b) => b[1] - a[1]).map(([c]) => c)
+---
+<Layout>
+    <Fragment slot="head">
+        <link rel="alternate" type="text/plain" href="/llms.txt" title="llms.txt index" />
+        <meta name="keywords" content="cli for ai agents, desktop app cli, does my app have a cli, agent-friendly cli, llms.txt, claude code cli directory, cursor cli, codex cli prompt, mac gui cli, ai agent tool directory" />
+        <script is:inline type="application/ld+json" set:html={JSON.stringify({
+            '@context': 'https://schema.org',
+            '@type': 'WebSite',
+            name: 'doesitcli',
+            alternateName: 'doesitcli.com',
+            url: 'https://doesitcli.com/',
+            description: 'A curated CLI directory for desktop apps, built for AI agents. Find out if your favorite GUI app has a CLI for AI agents, with structured agent prompts ready to paste into Claude / Codex / any LLM.',
+            potentialAction: {
+                '@type': 'SearchAction',
+                target: 'https://doesitcli.com/?q={query}',
+                'query-input': 'required name=query',
+            },
+        })} />
+    </Fragment>
+
+    <section class="max-w-screen-xl mx-auto px-6 pt-6 pb-12 text-center relative">
+        <div class="flex justify-end mb-4">
+            <button
+                data-lang-toggle
+                class="px-3 py-1.5 rounded-full border border-white/10 bg-white/5 hover:bg-white/10 text-[11px] leading-none text-gray-300 hover:text-white transition"
+                aria-label="Toggle language"
+                title="English / 中文"
+            >EN / 中文</button>
+        </div>
+        <h1 class="text-4xl md:text-6xl font-bold tracking-tight text-white">
+            <span data-i18n="home.h1.a">你的 App，有 </span><span class="text-accent" data-i18n="home.h1.b">CLI</span><span data-i18n="home.h1.c"> 吗？</span>
+        </h1>
+        <p class="mt-5 text-base md:text-lg text-gray-400 max-w-2xl mx-auto leading-relaxed" data-i18n="site.tagline">
+            每个 Desktop App，都有对应的 CLI 在这里。Agent 友好，结构化索引，开箱即用。
+        </p>
+
+        <!-- Hero installer: one-shot "try it" command. For permanent install, see /agent. -->
+        <div class="mt-10 max-w-2xl mx-auto text-left">
+            <p class="text-center text-sm text-gray-400 mb-3" data-i18n="hero.installer.lead">一行命令，让你的 Agent 掌握全目录</p>
+            <div class="installer rounded-2xl bg-white/5 border border-white/10 overflow-hidden">
+                <input type="radio" name="installer-tab" id="tab-claude" checked class="hidden" />
+                <input type="radio" name="installer-tab" id="tab-codex" class="hidden" />
+                <input type="radio" name="installer-tab" id="tab-generic" class="hidden" />
+
+                <div class="flex border-b border-white/10 text-xs">
+                    <label for="tab-claude" class="installer-tab flex-1 text-center py-2.5 cursor-pointer">Claude Code</label>
+                    <label for="tab-codex" class="installer-tab flex-1 text-center py-2.5 cursor-pointer">Codex</label>
+                    <label for="tab-generic" class="installer-tab flex-1 text-center py-2.5 cursor-pointer">Generic</label>
+                </div>
+
+                <div class="installer-panels relative">
+                    <div class="installer-panel" data-tab="claude">
+                        <pre class="overflow-x-auto p-4 text-xs"><code>curl -fsSL https://doesitcli.com/agent-prompt | claude</code></pre>
+                    </div>
+                    <div class="installer-panel" data-tab="codex">
+                        <pre class="overflow-x-auto p-4 text-xs"><code>curl -fsSL https://doesitcli.com/agent-prompt | codex</code></pre>
+                    </div>
+                    <div class="installer-panel" data-tab="generic">
+                        <pre class="overflow-x-auto p-4 text-xs"><code>{`# Paste this once into your chat:
+Read https://doesitcli.com/agent-prompt and follow it.`}</code></pre>
+                    </div>
+                    <button type="button" id="installer-copy" class="absolute top-2 right-2 px-2 py-1 rounded bg-white/10 hover:bg-white/15 text-[10px] font-medium" aria-label="copy">📋</button>
+                </div>
+                <div class="flex justify-end px-4 py-1.5">
+                    <a
+                        href="/agent-prompt"
+                        target="_blank"
+                        class="text-[10px] text-gray-500 hover:text-gray-300 cursor-help no-underline"
+                        data-title-en=""
+                        data-title-zh=""
+                        id="prompt-preview"
+                    >input prompt</a>
+                </div>
+            </div>
+            <p class="mt-3 text-center text-[11px] text-gray-500">
+                <span data-i18n="hero.installer.note">一次性运行，不改任何配置。想永久使用？</span>
+                <a href="/agent" class="text-accent" data-i18n="hero.installer.note2">安装 /cli 技能</a>
+            </p>
+        </div>
+
+        <div class="mt-10 flex flex-wrap justify-center gap-2 text-xs">
+            <button data-cat="" data-i18n="home.cat.all" class="cat-chip px-3 py-1 rounded-full bg-accent/20 text-accent border border-accent/40">All</button>
+            {usedCategories.map((c) => (
+                <button data-cat={c} class="cat-chip px-3 py-1 rounded-full bg-white/5 text-gray-300 border border-white/10 hover:bg-white/10">{c}</button>
+            ))}
+        </div>
+
+    </section>
+
+    {sponsor && sponsorApp && (
+        <section class="max-w-screen-xl mx-auto px-6 pt-8">
+            <a
+                href={sponsor.ctaUrl}
+                rel="sponsored noopener"
+                target="_blank"
+                class="block p-5 rounded-2xl border border-accent/30 bg-accent/5 hover:bg-accent/10 transition no-underline"
+            >
+                <div class="flex items-start justify-between gap-4">
+                    <div class="min-w-0">
+                        <div class="flex items-center gap-2 mb-1">
+                            <span class="text-[10px] uppercase tracking-wider text-accent font-semibold">Sponsored</span>
+                            <span class="text-xs text-gray-500">{sponsorApp.data.categories.join(', ')}</span>
+                        </div>
+                        <h3 class="text-lg font-semibold text-white">{sponsorApp.data.displayName}</h3>
+                        <p class="mt-1 text-sm text-gray-300">{sponsor.headline || sponsorApp.data.oneLiner}</p>
+                    </div>
+                    <span class="shrink-0 px-4 py-2 rounded-full bg-accent text-white text-xs font-medium whitespace-nowrap">{sponsor.ctaLabel} →</span>
+                </div>
+            </a>
+        </section>
+    )}
+
+    {(highlightGlobal.length > 0 || highlightChina.length > 0) && (
+        <section id="featured-section" class="max-w-screen-xl mx-auto px-6 py-8 space-y-8">
+            <h2 class="text-xl font-semibold text-white" data-i18n="home.highlight">✨ Highlight</h2>
+
+            {highlightGlobal.length > 0 && (
+                <div>
+                    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        {highlightGlobal.map((app) => (
+                            <a
+                                href={`/${slugOf(app)}`}
+                                class="block p-4 rounded-xl bg-white/5 border border-white/10 hover:border-accent hover:bg-white/10 transition no-underline"
+                            >
+                                <div class="flex items-center justify-between gap-2">
+                                    <h4 class="text-sm font-semibold text-white truncate">{app.data.displayName}</h4>
+                                    <Stars heat={heatOf(slugOf(app))} />
+                                </div>
+                                <div class="mt-1.5 flex flex-wrap gap-1">
+                                    <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).cli === 'embedded' ? 'bg-white/10 text-gray-400' : 'bg-accent/10 text-accent'}`} data-title-en={badgesOf(app).cli === 'embedded' ? 'CLI bundled with the desktop app' : 'CLI is a separate installable package'}
+                                    data-title-zh={badgesOf(app).cli === 'embedded' ? 'CLI 内嵌在桌面应用中' : 'CLI 为独立安装包'}>{badgesOf(app).cli}</span>
+                                    {badgesOf(app).src && <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).src.includes('official') ? 'bg-green-500/10 text-green-400' : 'bg-white/10 text-gray-400'}`} data-title-en={badgesOf(app).src.includes('official') ? 'Published by the vendor' : 'Maintained by the community'}
+                                    data-title-zh={badgesOf(app).src.includes('official') ? '由厂商官方发布' : '由社区维护'}>{badgesOf(app).src}</span>}
+                                    {badgesOf(app).hasSkills && <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400" data-title-en="Has agent skills for AI coding assistants"
+                                    data-title-zh="提供 AI Agent 技能">skills</span>}
+                                </div>
+                                <p class="mt-1.5 text-xs text-gray-400 line-clamp-2">{app.data.oneLiner}</p>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            )}
+
+            {highlightChina.length > 0 && (
+                <div>
+                    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+                        {highlightChina.map((app) => (
+                            <a
+                                href={`/${slugOf(app)}`}
+                                class="block p-4 rounded-xl bg-white/5 border border-white/10 hover:border-accent hover:bg-white/10 transition no-underline"
+                            >
+                                <div class="flex items-center justify-between gap-2">
+                                    <h4 class="text-sm font-semibold text-white truncate">{app.data.displayName}</h4>
+                                    <Stars heat={heatOf(slugOf(app))} />
+                                </div>
+                                <div class="mt-1.5 flex flex-wrap gap-1">
+                                    <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).cli === 'embedded' ? 'bg-white/10 text-gray-400' : 'bg-accent/10 text-accent'}`} data-title-en={badgesOf(app).cli === 'embedded' ? 'CLI bundled with the desktop app' : 'CLI is a separate installable package'}
+                                    data-title-zh={badgesOf(app).cli === 'embedded' ? 'CLI 内嵌在桌面应用中' : 'CLI 为独立安装包'}>{badgesOf(app).cli}</span>
+                                    {badgesOf(app).src && <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).src.includes('official') ? 'bg-green-500/10 text-green-400' : 'bg-white/10 text-gray-400'}`} data-title-en={badgesOf(app).src.includes('official') ? 'Published by the vendor' : 'Maintained by the community'}
+                                    data-title-zh={badgesOf(app).src.includes('official') ? '由厂商官方发布' : '由社区维护'}>{badgesOf(app).src}</span>}
+                                    {badgesOf(app).hasSkills && <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400" data-title-en="Has agent skills for AI coding assistants"
+                                    data-title-zh="提供 AI Agent 技能">skills</span>}
+                                </div>
+                                <p class="mt-1.5 text-xs text-gray-400 line-clamp-2">{app.data.oneLiner}</p>
+                            </a>
+                        ))}
+                    </div>
+                </div>
+            )}
+        </section>
+    )}
+
+    <section class="max-w-screen-xl mx-auto px-6 py-8">
+        <div class="flex items-baseline justify-between mb-3">
+            <h2 class="text-xl font-semibold text-white" data-i18n="home.allApps">All apps</h2>
+            <span id="result-count" class="text-xs text-gray-500">{apps.length}</span>
+        </div>
+        <input
+            id="q"
+            type="search"
+            placeholder="Search apps, skills, or tags…"
+            data-i18n-attr="placeholder:home.search.placeholder"
+            autocomplete="off"
+            class="w-full mb-4 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-white text-sm placeholder:text-gray-500 focus:outline-none focus:border-accent"
+        />
+        <ul id="app-list" class="divide-y divide-white/10 border border-white/10 rounded-2xl overflow-hidden">
+            {apps.map((app) => (
+                <li
+                    class="app-item"
+                    data-slug={slugOf(app)}
+                    data-name={app.data.displayName}
+                    data-cat={app.data.categories.join(' ')}
+                    data-tags={app.data.tags.join(' ')}
+                    data-uses={app.data.intents.join(' ')}
+                >
+                    <a
+                        href={`/${slugOf(app)}`}
+                        class="flex items-center justify-between gap-4 px-6 py-4 hover:bg-white/5 no-underline"
+                    >
+                        <div class="min-w-0 flex-1">
+                            <div class="flex items-center gap-2 flex-wrap">
+                                <span class="text-white font-medium">{app.data.displayName}</span>
+                                <span class="text-xs text-gray-500">{app.data.categories.join(', ')}</span>
+                                <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).cli === 'embedded' ? 'bg-white/10 text-gray-400' : 'bg-accent/10 text-accent'}`}>{badgesOf(app).cli}</span>
+                                {badgesOf(app).src && <span class={`text-[10px] px-1.5 py-0.5 rounded ${badgesOf(app).src.includes('official') ? 'bg-green-500/10 text-green-400' : 'bg-white/10 text-gray-400'}`}>{badgesOf(app).src}</span>}
+                                {badgesOf(app).hasSkills && <span class="text-[10px] px-1.5 py-0.5 rounded bg-blue-500/10 text-blue-400">skills</span>}
+                            </div>
+                            <div class="text-sm text-gray-400 line-clamp-1">{app.data.oneLiner}</div>
+                        </div>
+                        <div class="hidden sm:block shrink-0">
+                            <Stars heat={heatOf(slugOf(app))} />
+                        </div>
+                        <span class="text-gray-500 text-xl">→</span>
+                    </a>
+                </li>
+            ))}
+        </ul>
+        <p id="empty" class="hidden mt-6 text-center text-sm text-gray-500" data-i18n="home.empty">No matching app. Try another keyword.</p>
+    </section>
+
+    <script>
+        import Fuse from 'fuse.js'
+
+        type Doc = {
+            slug: string
+            displayName: string
+            oneLiner: string
+            categories: string[]
+            tags: string[]
+            installNames: string[]
+            intents: string[]
+            alternativesTo: string[]
+            heat: number
+        }
+
+        const res = await fetch('/search-index.json')
+        const { docs } = (await res.json()) as { docs: Doc[] }
+
+        const fuse = new Fuse(docs, {
+            keys: [
+                { name: 'displayName', weight: 2 },
+                { name: 'intents', weight: 1.8 },
+                { name: 'tags', weight: 1.5 },
+                { name: 'alternativesTo', weight: 1.1 },
+                { name: 'installNames', weight: 1 },
+                { name: 'categories', weight: 0.8 },
+                { name: 'oneLiner', weight: 0.5 },
+            ],
+            threshold: 0.4,
+            ignoreLocation: true,
+        })
+
+        const items = Array.from(document.querySelectorAll<HTMLLIElement>('.app-item'))
+        const featuredSection = document.getElementById('featured-section')
+        const empty = document.getElementById('empty')!
+        const count = document.getElementById('result-count')!
+        const input = document.getElementById('q') as HTMLInputElement
+        const chips = Array.from(document.querySelectorAll<HTMLButtonElement>('.cat-chip'))
+
+        let activeCat = ''
+        let query = ''
+
+        function apply() {
+            const q = query.trim()
+            let visible: Set<string>
+            if (q) {
+                visible = new Set(fuse.search(q).map((r) => r.item.slug))
+            } else {
+                visible = new Set(docs.map((d) => d.slug))
+            }
+            let shown = 0
+            for (const li of items) {
+                const slug = li.dataset.slug!
+                const cat = li.dataset.cat!
+                const ok = visible.has(slug) && (!activeCat || cat.split(' ').includes(activeCat))
+                li.style.display = ok ? '' : 'none'
+                if (ok) shown++
+            }
+            count.textContent = String(shown)
+            empty.classList.toggle('hidden', shown > 0)
+            // Hide featured when filtering
+            if (featuredSection) {
+                featuredSection.style.display = q || activeCat ? 'none' : ''
+            }
+        }
+
+        input.addEventListener('input', () => {
+            query = input.value
+            apply()
+        })
+
+        for (const chip of chips) {
+            chip.addEventListener('click', () => {
+                activeCat = chip.dataset.cat || ''
+                for (const c of chips) {
+                    const active = (c.dataset.cat || '') === activeCat
+                    c.classList.toggle('bg-accent/20', active)
+                    c.classList.toggle('text-accent', active)
+                    c.classList.toggle('border-accent/40', active)
+                    c.classList.toggle('bg-white/5', !active)
+                    c.classList.toggle('text-gray-300', !active)
+                    c.classList.toggle('border-white/10', !active)
+                }
+                apply()
+            })
+        }
+
+        // Prompt preview on hover — fetch once, cache as title
+        const preview = document.getElementById('prompt-preview')
+        if (preview) {
+            let fetched = false
+            preview.addEventListener('mouseenter', async () => {
+                if (fetched) return
+                fetched = true
+                try {
+                    const res = await fetch('/agent-prompt')
+                    preview.title = await res.text()
+                } catch {}
+            })
+        }
+
+        // Installer copy button — copies the visible <code> block.
+        const copyBtn = document.getElementById('installer-copy')
+        copyBtn?.addEventListener('click', async () => {
+            const visible = document.querySelector('.installer-panel:not([hidden])')
+                ?? document.querySelector('.installer-panel')
+            const code = visible?.querySelector('code')?.textContent ?? ''
+            try {
+                await navigator.clipboard.writeText(code)
+                const orig = copyBtn.textContent
+                copyBtn.textContent = '✓'
+                setTimeout(() => { copyBtn.textContent = orig }, 1500)
+            } catch {}
+        })
+    </script>
+
+    <style is:global>
+        /* Pure-CSS tabs: each radio's :checked state reveals exactly one panel
+           and highlights its label. No JS needed for tab switching. */
+        .installer-panel { display: none; }
+        .installer-tab { color: rgb(156 163 175); }
+
+        #tab-claude:checked  ~ .flex label[for="tab-claude"],
+        #tab-codex:checked   ~ .flex label[for="tab-codex"],
+        #tab-generic:checked ~ .flex label[for="tab-generic"] {
+            color: rgb(255 107 61);
+            background: rgba(255, 107, 61, 0.08);
+        }
+
+        #tab-claude:checked  ~ .installer-panels .installer-panel[data-tab="claude"],
+        #tab-codex:checked   ~ .installer-panels .installer-panel[data-tab="codex"],
+        #tab-generic:checked ~ .installer-panels .installer-panel[data-tab="generic"] {
+            display: block;
+        }
+    </style>
+</Layout>

@@ -1,0 +1,25 @@
+displayName: Zed  # app name
+homepage: https://zed.dev  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask zed
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/zed-industries/zed  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://zed.dev/docs/reference/cli  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [coding]  # one or more categories
+tags: [ide, rust, performance, multiplayer]  # free-form lowercase tags
+oneLiner: A high-performance, multiplayer code editor written in Rust with a built-in CLI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Zed is engineered for extreme performance and collaborative development.
+  Its command-line tool (`zed`) is installed via the command palette and allows
+  users to establish Zed as the default `$EDITOR` for Git operations. It provides
+  instantaneous workspace loading, which is highly beneficial for terminal-heavy
+  workflows where speed is paramount.
+intents:  # what a user or agent would want to DO
+  - set as the default `$EDITOR` for Git commit messages using `export EDITOR="zed --wait"`
+  - rapidly pipe command outputs or open massive directories without UI lag
+  - initiate multiplayer coding sessions directly from a specific repository path
+alternativesTo: []  # similar app names; [] if none

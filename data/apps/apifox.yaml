@@ -1,0 +1,25 @@
+displayName: Apifox  # app name
+homepage: https://apifox.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g apifox-cli
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://docs.apifox.com/apifox-cli  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 75  # 0-100, maintainer-only editorial boost
+categories: [api]  # one or more categories
+tags: [api, testing, automation, cicd]  # free-form lowercase tags
+oneLiner: The command-line companion for Apifox's API documentation and testing platform.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Apifox CLI brings the visual API testing scenarios configured in the Apifox GUI
+  into the terminal environment. It is optimized for continuous integration (CI) systems,
+  allowing teams to trigger complex test suites, upload test data files, and output
+  detailed execution reports headlessly.
+intents:  # what a user or agent would want to DO
+  - execute pre-configured API test suites automatically in Jenkins or GitHub Actions
+  - allow AI coding agents to run integration tests to verify code changes locally
+  - export and format API test results into CI/CD pipeline dashboards
+alternativesTo: [Postman CLI, Newman, Insomnia Inso]  # similar app names; [] if none

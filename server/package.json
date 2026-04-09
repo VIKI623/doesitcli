@@ -1,0 +1,17 @@
+{
+  "name": "doesitcli-api",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "main": "src/index.mjs",
+  "scripts": {
+    "start": "node src/index.mjs"
+  },
+  "dependencies": {
+    "@hono/node-server": "^1.13.0",
+    "hono": "^4.6.0"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

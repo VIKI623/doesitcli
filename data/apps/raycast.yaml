@@ -1,0 +1,28 @@
+displayName: Raycast  # app name
+homepage: https://www.raycast.com/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask raycast
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx skillfish add bendrucker/claude raycast
+    official: true
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://developers.raycast.com/information/developer-tools/cli  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 78  # 0-100, maintainer-only editorial boost
+categories: [productivity]  # one or more categories
+tags: [launcher, macos, extensions, scripting]  # free-form lowercase tags
+oneLiner: A blazingly fast, totally extendable launcher with native CLI development tools.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Raycast redefines the macOS launcher by prioritizing developer experience. While
+  its UI is entirely native, it relies heavily on its internal `ray` CLI for extension
+  development and hot-reloading. Additionally, it exposes Agent Client Protocols (ACP),
+  allowing AI coding assistants like Claude Code to integrate directly with Raycast's
+  UI capabilities, bridging terminal commands with graphical system prompts.
+intents:  # what a user or agent would want to DO
+  - scaffold, lint, and build custom React-based UI extensions using the `ray` command
+  - trigger complex AppleScript or Keyboard Maestro workflows via child processes
+  - allow AI agents to output native macOS notifications or modify the clipboard
+alternativesTo: []  # similar app names; [] if none

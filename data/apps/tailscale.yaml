@@ -1,0 +1,25 @@
+displayName: Tailscale  # app name
+homepage: https://tailscale.com/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask tailscale
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/tailscale/tailscale  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://tailscale.com/docs/reference/tailscale-cli  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [security]  # one or more categories
+tags: [vpn, network, zero-trust, wireguard]  # free-form lowercase tags
+oneLiner: A secure, zero-config VPN built on WireGuard with an indispensable CLI client.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  While Tailscale offers a seamless menu bar GUI on macOS for network management,
+  the `tailscale` CLI exposes advanced routing capabilities. It allows administrators
+  to configure exit nodes, expose local subnets, and integrate Kubernetes clusters.
+  The CLI is essential for configuring headless servers or enabling AI agents to
+  tunnel securely into private corporate networks to execute queries.
+intents:  # what a user or agent would want to DO
+  - configure local machines as exit nodes or subnet routers via terminal flags
+  - generate and manage ephemeral authentication keys for short-lived CI/CD runners
+  - inspect peer connections and network latency using `tailscale status` and `ping`
+alternativesTo: []  # similar app names; [] if none

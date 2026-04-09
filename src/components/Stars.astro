@@ -1,0 +1,51 @@
+---
+// Compact 5-star rating renderer. Pure SVG, inherits currentColor for the
+// filled portion so it adapts to light/dark themes without extra CSS.
+import { heatToStars } from '../lib/popularity'
+
+interface Props {
+    heat: number
+    showNumber?: boolean
+    size?: 'sm' | 'md'
+}
+
+const { heat, showNumber = false, size = 'sm' } = Astro.props
+const stars = heatToStars(heat)
+const px = size === 'md' ? 16 : 12
+const indices = [0, 1, 2, 3, 4]
+
+// No popularity data → render nothing. Closed-source apps (no GitHub, no npm,
+// no brew) all land at heat=0; showing five empty stars reads like a bad score
+// instead of "we don't have data", which is misleading.
+---
+{heat > 0 && (
+<span
+    class="inline-flex items-center gap-1"
+    data-title-en={`GitHub stars popularity: ${stars}/5★\nBased on open-source GitHub stars only. Closed-source apps are not rated.`}
+    data-title-zh={`GitHub 星标热度：${stars}/5★\n仅基于开源 GitHub 星标数，闭源应用不参与评分。`}
+>
+    <span class="inline-flex text-accent">
+        {indices.map((i) => {
+            const filled = stars - i
+            const fill = filled >= 1 ? 1 : filled >= 0.5 ? 0.5 : 0
+            return (
+                <svg width={px} height={px} viewBox="0 0 24 24" aria-hidden="true">
+                    <defs>
+                        <linearGradient id={`star-${i}-${heat}`}>
+                            <stop offset={`${fill * 100}%`} stop-color="currentColor" />
+                            <stop offset={`${fill * 100}%`} stop-color="currentColor" stop-opacity="0.18" />
+                        </linearGradient>
+                    </defs>
+                    <path
+                        fill={`url(#star-${i}-${heat})`}
+                        d="M12 17.27 18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"
+                    />
+                </svg>
+            )
+        })}
+    </span>
+    {showNumber && (
+        <span class="text-xs text-gray-400">{stars.toFixed(1)}</span>
+    )}
+</span>
+)}

@@ -1,0 +1,27 @@
+displayName: Notion  # app name
+homepage: https://www.notion.so  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g notion-cli
+    official: false
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx skills add ihlamury/notion-ui-skills
+    official: true
+openSourceDocsUrl: https://github.com/4ier/notion-cli  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://developers.notion.com/guides/mcp/get-started-with-mcp  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [notes]  # one or more categories
+tags: [workspace, wiki, databases, api]  # free-form lowercase tags
+oneLiner: The all-in-one workspace for your notes, tasks, wikis, and databases.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Notion's block-based architecture is highly amenable to programmatic access.
+  While Notion provides robust REST APIs, community CLIs like `notion-cli` extract
+  and wrap operations allowing agents to operate seamlessly. Coupled with Notion's
+  official MCP server, AI assistants can query entire databases, render Markdown
+  natively, and update nested pages directly from the shell without browser latency.
+intents:  # what a user or agent would want to DO
+  - query project statuses from a Notion database and format them as terminal tables
+  - programmatically convert and push local Markdown documentation directly into a Notion wiki
+  - utilize Agent Skills to synthesize repository changes into Notion changelog documents
+alternativesTo: [Obsidian, Confluence, Coda]  # similar app names; [] if none

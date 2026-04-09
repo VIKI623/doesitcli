@@ -1,0 +1,25 @@
+displayName: Tower  # app name
+homepage: https://www.git-tower.com/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask tower
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://www.git-tower.com/help/guides/integration/cli-tool/mac  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [coding]  # one or more categories
+tags: [git, version-control, gui, productivity]  # free-form lowercase tags
+oneLiner: The most powerful Git client for Mac and Windows with a native `gittower` CLI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Tower is renowned for its robust handling of advanced Git operations like interactive
+  rebasing and submodules. The `gittower` CLI tool empowers developers to instantly
+  summon Tower's visual interface for the current terminal directory. This creates a
+  highly efficient hybrid workflow, utilizing the terminal for speed and Tower for
+  complex history manipulation.
+intents:  # what a user or agent would want to DO
+  - launch the visual interactive rebase interface from a terminal script
+  - visually inspect staging areas for specific submodules located via shell commands
+  - recover lost commits using the visual Reflog triggered from the command line
+alternativesTo: []  # similar app names; [] if none

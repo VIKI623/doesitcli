@@ -1,0 +1,27 @@
+displayName: Lark (飞书)  # app name
+homepage: https://open.feishu.cn/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g @larksuite/cli
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx skills add larksuite/cli -y -g
+    official: true
+openSourceDocsUrl: https://github.com/larksuite/cli  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://open.feishu.cn/document/tools-and-resources/development-tools/ide-with-commands  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 85  # 0-100, maintainer-only editorial boost
+categories: [collaboration]  # one or more categories
+tags: [chat, enterprise, office, documents, agent]  # free-form lowercase tags
+oneLiner: Official Feishu CLI empowering AI agents to manipulate enterprise workspace data.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  The Feishu CLI (`lark-cli`) is an official open-source tool designed to bridge AI agents
+  with the Feishu (Lark) ecosystem. It provides over 200 commands and 20 agent skills,
+  allowing autonomous execution of tasks like sending messages, creating documents,
+  querying calendars, and managing multidimensional tables via OAuth.
+intents:  # what a user or agent would want to DO
+  - allow agents to read and summarize unread chat messages
+  - automatically create calendar events based on terminal scripts
+  - update Bitable (Base) records using CI/CD pipeline outputs
+alternativesTo: []  # similar app names; [] if none

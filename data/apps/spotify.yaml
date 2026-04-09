@@ -1,0 +1,24 @@
+displayName: Spotify  # app name
+homepage: https://www.spotify.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install shpotify
+    official: false
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/hnarayanan/shpotify  # GitHub repo URL if open-source, else null
+officialDocsUrl: null  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [media]  # one or more categories
+tags: [music, media-player, audio, entertainment]  # free-form lowercase tags
+oneLiner: Control Spotify playback from the terminal with the community-built shpotify CLI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Shpotify is a community-maintained shell script that controls the Spotify desktop app on
+  macOS via AppleScript. It supports play, pause, skip, search, and volume control without
+  leaving the terminal. Since it is not an official Spotify tool, it depends on the Spotify
+  desktop app being installed and running.
+intents:  # what a user or agent would want to DO
+  - play, pause, and skip tracks without switching to the Spotify window
+  - search for and queue songs or albums directly from the terminal
+  - control playback volume and toggle shuffle or repeat modes via shell commands
+alternativesTo: []  # similar app names; [] if none

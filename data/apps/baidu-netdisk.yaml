@@ -1,0 +1,24 @@
+displayName: Baidu Netdisk (百度网盘)  # app name
+homepage: https://pan.baidu.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install baidupcs-go
+    official: false
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/qjfoidnh/BaiduPCS-Go  # GitHub repo URL if open-source, else null
+officialDocsUrl: null  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [media]  # one or more categories
+tags: [cloud-storage, sync, download, golang]  # free-form lowercase tags
+oneLiner: A highly efficient, Go-based command-line client for Baidu Netdisk.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  While Baidu Netdisk offers a heavy GUI client, `BaiduPCS-Go` is a widely adopted
+  open-source CLI tool that provides terminal users with blazing-fast, multi-threaded
+  download capabilities. It behaves like a standard Linux shell, allowing users to
+  navigate their cloud drive, upload files, and bypass speed limits via terminal scripts.
+intents:  # what a user or agent would want to DO
+  - batch download large datasets to headless Linux servers
+  - automate the backup of local directories to Baidu Netdisk via cron jobs
+  - interactively manage cloud files using Unix-like commands (ls, cd, cp, rm)
+alternativesTo: []  # similar app names; [] if none

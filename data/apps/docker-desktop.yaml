@@ -1,0 +1,25 @@
+displayName: Docker Desktop  # app name
+homepage: https://www.docker.com/products/docker-desktop  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask docker
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/docker/cli # GitHub repo URL if open-source, else null
+officialDocsUrl: https://docs.docker.com/desktop/setup/install/mac-install/  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [devops]  # one or more categories
+tags: [containers, virtualization, kubernetes, infrastructure]  # free-form lowercase tags
+oneLiner: Securely build, share, and run containerized applications with Docker CLI synergy.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Docker Desktop provides a seamless GUI over the complex Docker engine, managing
+  VMs, volumes, and Kubernetes clusters. The `docker` and `docker-compose` CLI commands
+  are deeply embedded, routing commands from the host OS to the underlying virtualized
+  Linux kernel. This allows DevOps teams to inspect container layers and manage image
+  sizes efficiently from the terminal while monitoring resource usage visually.
+intents:  # what a user or agent would want to DO
+  - orchestrate multi-container environments using `docker-compose up` via CI/CD
+  - execute dive commands to explore Docker image layers and optimize storage
+  - manage local Kubernetes contexts seamlessly alongside the Docker CLI
+alternativesTo: []  # similar app names; [] if none

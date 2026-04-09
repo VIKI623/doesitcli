@@ -1,0 +1,115 @@
+---
+import Layout from '../layouts/default.astro'
+
+const origin = Astro.site?.origin ?? 'https://doesitcli.com'
+---
+<Layout
+    title="doesitcli — Install CLI skills for your agent"
+    description="One line to give your agent a /cli skill. Works with Claude Code, Codex, and Cursor."
+>
+    <article class="max-w-3xl mx-auto px-6 py-16 space-y-14">
+        <header class="space-y-5">
+            <h1 class="text-4xl md:text-5xl font-bold text-white">Install the <code class="text-accent">/cli</code> skill</h1>
+            <p class="text-lg text-gray-300">Zero token cost until you invoke the skill.</p>
+            <div class="relative max-w-xl mx-auto">
+                <pre class="text-xs bg-darker p-4 pr-12 rounded-xl overflow-x-auto text-center"><code>curl -fsSL {origin}/install | sh</code></pre>
+                <button type="button" class="copy-btn absolute top-3 right-3 px-2 py-1 rounded bg-white/10 hover:bg-white/20 text-[10px] text-gray-300" aria-label="copy">📋</button>
+            </div>
+        </header>
+
+        <!-- 1. Use -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">1. Use</h2>
+            <p class="text-sm text-gray-400">Type <code>/cli</code> followed by your question in any session:</p>
+            <div class="rounded-xl bg-white/5 border border-white/10 p-5 space-y-2 text-sm font-mono text-gray-300">
+                <p><span class="text-accent">/cli</span> does Figma have a CLI?</p>
+                <p><span class="text-accent">/cli</span> find me a CLI to manage docker on macOS</p>
+                <p><span class="text-accent">/cli</span> install the Stripe CLI and set up webhook forwarding</p>
+            </div>
+            <p class="text-xs text-gray-500">The agent fetches our index lazily on first use — zero token cost until you actually invoke <code>/cli</code>.</p>
+        </section>
+
+        <!-- 2. How it works -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">2. How it works</h2>
+            <p class="text-sm text-gray-400">A four-step decision tree. The agent only fetches what it needs.</p>
+            <ol class="space-y-3 text-sm">
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">1.</span>
+                        <div>
+                            <div class="text-white font-medium">Discover</div>
+                            <p class="text-gray-400 mt-1">Fetch <a href="/llms.txt" class="font-mono">/llms.txt</a> (~1.3k tok) — index of every app by category.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">2.</span>
+                        <div>
+                            <div class="text-white font-medium">Match</div>
+                            <p class="text-gray-400 mt-1">Narrow by category: fetch <code>/llms-{'{'}<em>category</em>{'}'}.txt</code> (~0.2k tok) for just that category with install commands.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">3.</span>
+                        <div>
+                            <div class="text-white font-medium">Act</div>
+                            <p class="text-gray-400 mt-1">Fetch <code>/&lt;slug&gt;.md</code> (~0.3k tok) for the chosen app — install commands, skills, and agent prompt.</p>
+                        </div>
+                    </div>
+                </li>
+                <li class="p-4 rounded-xl bg-white/5 border border-white/10">
+                    <div class="flex items-baseline gap-3">
+                        <span class="text-accent font-mono">4.</span>
+                        <div>
+                            <div class="text-white font-medium">Stay honest</div>
+                            <p class="text-gray-400 mt-1"><strong class="text-white">Never invent commands</strong>. If we don't list it, the agent says so.</p>
+                        </div>
+                    </div>
+                </li>
+            </ol>
+        </section>
+
+        <!-- 3. Endpoints -->
+        <section class="space-y-4">
+            <h2 class="text-2xl font-semibold text-white">3. Endpoints</h2>
+            <div class="overflow-x-auto rounded-xl border border-white/10">
+                <table class="w-full text-sm">
+                    <thead class="bg-white/5 text-xs uppercase text-gray-400">
+                        <tr>
+                            <th class="text-left px-4 py-2">Endpoint</th>
+                            <th class="text-left px-4 py-2">Format</th>
+                            <th class="text-left px-4 py-2">When to use</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-white/10">
+                        <tr><td class="px-4 py-2 font-mono">/llms.txt</td><td class="px-4 py-2">md (~1.3k tok)</td><td class="px-4 py-2 text-gray-400">Index by category</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/llms-{'{category}'}.txt</td><td class="px-4 py-2">md (~0.2k tok)</td><td class="px-4 py-2 text-gray-400">One category (e.g. /llms-coding.txt)</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/llms-full.txt</td><td class="px-4 py-2">md (~11k tok)</td><td class="px-4 py-2 text-gray-400">Full corpus</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/{'<slug>'}.md</td><td class="px-4 py-2">md (~0.3k tok)</td><td class="px-4 py-2 text-gray-400">Single app detail</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/{'<slug>'}.json</td><td class="px-4 py-2">JSON</td><td class="px-4 py-2 text-gray-400">Programmatic access</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/install</td><td class="px-4 py-2">shell</td><td class="px-4 py-2 text-gray-400">One-line skill installer</td></tr>
+                        <tr><td class="px-4 py-2 font-mono">/agent-prompt</td><td class="px-4 py-2">text (~0.1k tok)</td><td class="px-4 py-2 text-gray-400">Decision tree</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </article>
+
+    <script is:inline>
+        document.querySelectorAll('.copy-btn').forEach((btn) => {
+            btn.addEventListener('click', async () => {
+                const code = btn.closest('.relative')?.querySelector('code')?.textContent ?? ''
+                try {
+                    await navigator.clipboard.writeText(code)
+                    const orig = btn.textContent
+                    btn.textContent = '✓'
+                    setTimeout(() => { btn.textContent = orig }, 1500)
+                } catch {}
+            })
+        })
+    </script>
+</Layout>

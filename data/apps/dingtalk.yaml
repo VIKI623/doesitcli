@@ -1,0 +1,25 @@
+displayName: DingTalk (钉钉)  # app name
+homepage: https://open.dingtalk.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g dingtalk-design-cli
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://open.dingtalk.com/document/download/dingtalk-design-introduction  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 80  # 0-100, maintainer-only editorial boost
+categories: [collaboration]  # one or more categories
+tags: [chat, enterprise, miniapp, development]  # free-form lowercase tags
+oneLiner: DingTalk Design CLI for initializing and debugging enterprise mini-apps and H5 micro-apps.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  DingTalk provides a standalone Design CLI tailored for enterprise application developers.
+  While DingTalk itself is a comprehensive GUI collaboration suite, this CLI allows developers
+  to initialize, build, debug, and upload mini-programs and H5 micro-apps directly from the
+  terminal, seamlessly integrating enterprise app development into local IDE workflows.
+intents:  # what a user or agent would want to DO
+  - initialize a new DingTalk mini-program workspace from terminal
+  - run a local web simulator to debug H5 micro-apps using `ding dev web`
+  - automate the linting and uploading of enterprise components to the developer backend
+alternativesTo: []  # similar app names; [] if none

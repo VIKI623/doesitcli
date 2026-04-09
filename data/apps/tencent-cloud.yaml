@@ -1,0 +1,24 @@
+displayName: Tencent Cloud (腾讯云)  # app name
+homepage: https://cloud.tencent.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install tccli
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/TencentCloud/tencentcloud-cli  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://cloud.tencent.com/document/product/440/34011  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [cloud]  # one or more categories
+tags: [cloud, infrastructure, tencent, api]  # free-form lowercase tags
+oneLiner: The unified CLI for managing Tencent Cloud resources via terminal scripts.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  TCCLI (`tccli`) integrates all Tencent Cloud products that support Cloud API 3.0.
+  It provides a structured way to bypass the web management console, outputting responses
+  in JSON, table, or text formats. This makes it an ideal backend execution engine for
+  automated infrastructure pipelines and programmatic cloud orchestration.
+intents:  # what a user or agent would want to DO
+  - script the creation of VPC networks and subnets
+  - query and visualize cloud resource usage in terminal tables
+  - automate the deployment of cloud functions and serverless architectures
+alternativesTo: []  # similar app names; [] if none

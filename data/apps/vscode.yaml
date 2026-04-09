@@ -1,0 +1,27 @@
+displayName: Visual Studio Code  # app name
+homepage: https://code.visualstudio.com  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask visual-studio-code
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx ai-agent-skills install frontend-design --agent vscode
+    official: true
+openSourceDocsUrl: https://github.com/microsoft/vscode  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://code.visualstudio.com/docs/editor/command-line  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [coding]  # one or more categories
+tags: [ide, editor, extension, agent]  # free-form lowercase tags
+oneLiner: Microsoft's extensible code editor with a powerful embedded CLI for workspace management.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Visual Studio Code provides a robust embedded command-line interface (`code`).
+  The CLI allows developers and autonomous agents to open files, install extensions,
+  compare diffs, and manage user profiles directly from the terminal. It acts as
+  the primary bridge for agentic tools to manipulate the developer's active workspace
+  without requiring manual GUI navigation.
+intents:  # what a user or agent would want to DO
+  - programmatically open specific directories or files from a shell script
+  - install, uninstall, or update VS Code extensions via CI/CD pipelines
+  - output file differences directly into the terminal using the `--diff` flag
+alternativesTo: []  # similar app names; [] if none

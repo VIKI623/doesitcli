@@ -1,0 +1,24 @@
+displayName: Insomnia  # app name
+homepage: https://insomnia.rest/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install inso
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/Kong/insomnia  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://docs.insomnia.rest/inso-cli/install  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [api]  # one or more categories
+tags: [api-client, graphql, rest, testing]  # free-form lowercase tags
+oneLiner: Inso CLI brings Insomnia API design and testing workflows to CI/CD pipelines.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Insomnia is a popular API client for designing, debugging, and testing REST and GraphQL APIs.
+  Its companion CLI, Inso, lets you run API tests, lint OpenAPI specs, and generate
+  configuration from Insomnia workspaces in automated pipelines. This bridges the gap between
+  interactive API design in the GUI and repeatable validation in CI.
+intents:  # what a user or agent would want to DO
+  - run API test suites defined in Insomnia workspaces as part of CI/CD
+  - lint and validate OpenAPI specifications from the command line
+  - generate Kong declarative config from Insomnia design documents
+alternativesTo: [Postman, Apifox]  # similar app names; [] if none

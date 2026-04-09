@@ -1,0 +1,27 @@
+displayName: Obsidian  # app name
+homepage: https://obsidian.md/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask obsidian
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx skills add jackal092927/obsidian-official-cli-skills
+    official: true
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://obsidian.md/cli  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [notes]  # one or more categories
+tags: [pkm, markdown, notes, local-first]  # free-form lowercase tags
+oneLiner: A powerful local-first knowledge base operating on a folder of plain text files.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  With version 1.12, Obsidian introduced an official command-line interface.
+  This CLI enables terminal users to query vault properties, create notes, and
+  trigger deep application events without touching the GUI. For AI coding agents,
+  the `obsidian` command acts as a gateway to local RAG (Retrieval-Augmented Generation),
+  allowing models to read, write, and link knowledge dynamically.
+intents:  # what a user or agent would want to DO
+  - append tasks to a daily note automatically using `obsidian daily:append`
+  - enable coding agents to search the vault and construct structural mappings of ideas
+  - export metadata and unresolved links via JSON to build custom analytics dashboards
+alternativesTo: []  # similar app names; [] if none

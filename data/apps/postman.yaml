@@ -1,0 +1,25 @@
+displayName: Postman  # app name
+homepage: https://www.postman.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g postman-cli
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://learning.postman.com/docs/postman-cli/postman-cli-overview  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [api]  # one or more categories
+tags: [api, testing, automation, cicd]  # free-form lowercase tags
+oneLiner: A secure command-line companion for the Postman API platform.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  While Postman is the premier GUI for API design and testing, the Postman CLI
+  translates these visual workspaces into executable command-line workflows. It
+  allows developers to run API collections, execute integration tests, and validate
+  governance schemas directly within CI/CD pipelines, sending the telemetry data
+  back to the Postman cloud for visual reporting.
+intents:  # what a user or agent would want to DO
+  - trigger API performance and integration tests locally before pushing code
+  - automate API schema validation against governance rules in GitHub Actions
+  - synchronize local API collections to cloud workspaces securely via the terminal
+alternativesTo: [Apifox]  # similar app names; [] if none

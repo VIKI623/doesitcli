@@ -1,0 +1,28 @@
+# Copy this file as data/apps/<slug>.yaml (kebab-case, e.g. my-app.yaml)
+# Fill in every field, then open a PR.
+# 复制此文件为 data/apps/<slug>.yaml（kebab-case 命名），填写后提交 PR。
+
+displayName: My App  # app name / 应用名称
+homepage: https://example.com  # official website / 官方主页
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+cliInstall:  # CLI install commands / CLI 安装命令
+  - command: brew install my-app  # one-line install (npm/brew/curl) / 一行安装命令
+    official: true  # true = vendor-published, false = community / 厂商发布或社区维护
+skillInstall: []  # agent skill install; same shape as cliInstall; [] if none / Agent 技能安装，无则填 []
+# skillInstall:
+#   - command: npx skills add my-app-skill
+#     official: true
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null / 开源填 GitHub URL，否则 null
+officialDocsUrl: null  # product docs page, or null / 产品文档页，或 null
+status: active  # active | beta | deprecated
+categories: []  # one or more: coding, devops, api, security, collaboration, design, notes, media, cloud, database, productivity
+tags: []  # free-form lowercase tags, 3-5 / 自由填写，小写，3-5 个
+oneLiner: One sentence about what this CLI does.  # ≤ 140 chars
+description: >  # 2-4 sentences / 两到四句话
+  Describe what this CLI is and what it does. Who benefits from it.
+  Keep it factual and concise.
+intents:  # what a user or agent would want to DO / 用户或 Agent 想做什么
+  - first intent
+  - second intent
+  - third intent
+alternativesTo: []  # similar app names; [] if none / 同类应用名称，无则 []

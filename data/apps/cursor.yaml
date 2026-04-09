@@ -1,0 +1,28 @@
+displayName: Cursor  # app name
+homepage: https://cursor.com  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: curl https://cursor.com/install -fsSL | bash
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx ai-agent-skills install frontend-design --agent cursor
+    official: true
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://cursor.com/docs/cli/overview  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 90  # 0-100, maintainer-only editorial boost
+categories: [coding]  # one or more categories
+tags: [ide, ai, agent, codex]  # free-form lowercase tags
+oneLiner: The AI-first code editor with an integrated autonomous agent and terminal CLI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Cursor extends the traditional VS Code architecture with deep AI integration.
+  Its embedded CLI (`cursor` or `agent`) allows headless execution of AI tasks.
+  Agents can discover and apply Agent Skills dynamically via the terminal, enabling
+  complex multi-file refactoring and codebase queries directly from external scripts
+  or background CI processes.
+intents:  # what a user or agent would want to DO
+  - invoke the Cursor agent headlessly to find and fix bugs via shell commands
+  - apply declarative Agent Skills (SKILL.md) to enforce project-specific coding standards
+  - integrate AI-driven code generation into automated deployment workflows
+alternativesTo: []  # similar app names; [] if none

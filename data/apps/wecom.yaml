@@ -1,0 +1,27 @@
+displayName: WeCom (企业微信)  # app name
+homepage: https://work.weixin.qq.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: china  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g @wecom/cli
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: npx skills add WeComTeam/wecom-cli -y -g
+    official: true
+openSourceDocsUrl: https://github.com/WecomTeam/wecom-cli  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://open.work.weixin.qq.com/help2/pc/21676  # product docs page, or null
+status: active  # active | beta | deprecated
+highlight: 65  # 0-100, maintainer-only editorial boost
+categories: [collaboration]  # one or more categories
+tags: [chat, enterprise, agent, tencent]  # free-form lowercase tags
+oneLiner: WeCom's official CLI enabling agentic access to messaging, docs, and meetings.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  The WeCom CLI exposes core product capabilities including messaging, calendars,
+  documents, smart tables, meetings, and contacts to the terminal. It is explicitly
+  designed to support mainstream AI agents through long-lived connection bots, dropping
+  the barrier to zero for integrating AI workflows into Tencent's enterprise environment.
+intents:  # what a user or agent would want to DO
+  - auto-reply to customer inquiries via message APIs
+  - generate and distribute daily report documents
+  - schedule online meetings and manage to-do lists from shell scripts
+alternativesTo: []  # similar app names; [] if none

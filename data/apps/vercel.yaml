@@ -1,0 +1,24 @@
+displayName: Vercel  # app name
+homepage: https://vercel.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install -g vercel
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/vercel/vercel  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://vercel.com/docs/cli  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [devops]  # one or more categories
+tags: [deployment, edge-compute, serverless, hosting]  # free-form lowercase tags
+oneLiner: Deploy frontend apps and serverless functions to Vercel's edge network from the terminal.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  The Vercel CLI provides a complete interface for deploying and managing projects on Vercel's
+  platform. You can trigger production and preview deployments, manage environment variables,
+  inspect build logs, and link local projects to Vercel without visiting the dashboard. It also
+  supports local development with `vercel dev` to emulate the serverless environment.
+intents:  # what a user or agent would want to DO
+  - deploy a frontend project to production or create preview URLs from the terminal
+  - manage environment variables and project settings without the web dashboard
+  - emulate the Vercel serverless environment locally during development
+alternativesTo: []  # similar app names; [] if none

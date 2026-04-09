@@ -1,0 +1,27 @@
+displayName: Figma  # app name
+homepage: https://www.figma.com/  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: npm install --global @figma/code-connect@latest
+    official: true
+skillInstall:  # agent skill install commands; [] if none
+  - command: claude plugin install figma@claude-plugins-official
+    official: true
+openSourceDocsUrl: https://github.com/figma/code-connect  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://help.figma.com/hc/en-us/articles/23920389749655-Code-Connect  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [design]  # one or more categories
+tags: [ui, ux, design-system, codegen]  # free-form lowercase tags
+oneLiner: The collaborative interface design tool bridging designs to code via Code Connect.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Figma's Code Connect CLI represents a paradigm shift in design-to-code workflows.
+  Running locally in a repository, the CLI maps Figma component attributes to actual
+  React/Swift codebase implementations. Combined with Figma's official MCP server and
+  Agent Skills, AI assistants can now read design intent and generate pixel-perfect,
+  component-aware frontend code directly from the terminal.
+intents:  # what a user or agent would want to DO
+  - generate accurate boilerplate code for complex UI elements using `npx skills add figma`
+  - publish bidirectional property mappings to ensure design and code stay synchronized
+  - allow autonomous agents to inspect layout bounds and colors without needing visual rendering
+alternativesTo: []  # similar app names; [] if none

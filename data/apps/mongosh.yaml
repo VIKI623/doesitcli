@@ -1,0 +1,24 @@
+displayName: MongoDB Shell  # app name
+homepage: https://www.mongodb.com/products/tools/shell  # official website
+cliType: standalone  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install mongosh
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: https://github.com/mongodb-js/mongosh  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://www.mongodb.com/docs/mongodb-shell/install/  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [database]  # one or more categories
+tags: [database, mongodb, nosql, query-tool]  # free-form lowercase tags
+oneLiner: Modern MongoDB shell for querying, scripting, and administering databases from the terminal.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  mongosh is the official next-generation MongoDB shell, replacing the legacy mongo shell. It
+  provides a fully featured JavaScript REPL for querying collections, running aggregation
+  pipelines, and administering MongoDB deployments. It supports syntax highlighting, intelligent
+  autocompletion, and can connect to Atlas clusters, replica sets, and standalone instances.
+intents:  # what a user or agent would want to DO
+  - query and aggregate data in MongoDB collections interactively
+  - run administrative commands to manage indexes, users, and replica set configuration
+  - execute JavaScript scripts against a database for data migration or cleanup
+alternativesTo: []  # similar app names; [] if none

@@ -1,0 +1,25 @@
+displayName: Sketch  # app name
+homepage: https://www.sketch.com/  # official website
+cliType: embedded  # standalone = separate install; embedded = bundled with desktop app
+region: global  # global | china (maintainer-only)
+cliInstall:  # CLI install commands; at least one for standalone apps
+  - command: brew install --cask sketch
+    official: true
+skillInstall: []  # agent skill install commands; [] if none
+openSourceDocsUrl: null  # GitHub repo URL if open-source, else null
+officialDocsUrl: https://developer.sketch.com/cli/  # product docs page, or null
+status: active  # active | beta | deprecated
+categories: [design]  # one or more categories
+tags: [mac-native, vector, design, export]  # free-form lowercase tags
+oneLiner: The pioneering Mac-native vector design tool equipped with the `sketchtool` CLI.  # ≤ 140 chars
+description: >  # 2-4 sentences
+  Sketch revolutionized UI design and established early programmatic access via
+  `sketchtool`. Bundled directly inside the Sketch application bundle, this binary
+  allows developers to inspect document structures, export artboards to various
+  formats, and trigger plugins headlessly. It is a fundamental building block for
+  automated design handoff and continuous integration pipelines for assets.
+intents:  # what a user or agent would want to DO
+  - batch export hundreds of artboards or slices to PNG/SVG via a single shell command
+  - dump the JSON tree of a `.sketch` file to programmatically update text localizations
+  - run custom JavaScript plugins headlessly to recalculate layout frames before export
+alternativesTo: []  # similar app names; [] if none
