@@ -1,0 +1,24 @@
+displayName: Redis
+homepage: https://redis.io/
+cliType: standalone
+region: global
+cliInstall:
+  - command: brew install redis
+    official: true
+skillInstall: []
+openSourceDocsUrl: https://github.com/redis/redis
+officialDocsUrl: https://redis.io/docs/latest/operate/oss_and_stack/install/
+status: active
+category: devops
+tags: [database, caching, memory, key-value]
+oneLiner: In-memory data store with a built-in CLI for key-value operations and server management.
+description: >
+  Redis ships with redis-cli, a terminal client for interacting with any Redis server. You can
+  get and set keys, run Lua scripts, monitor commands in real time, and perform cluster
+  administration. It is the primary tool for debugging, benchmarking, and managing Redis
+  instances outside of application code.
+useCases:
+  - inspect and manipulate cached keys on a running Redis instance
+  - monitor live command traffic for debugging application behavior
+  - perform cluster failover, replication setup, and memory diagnostics
+alternativesTo: []

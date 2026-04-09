@@ -1,0 +1,24 @@
+displayName: Bitwarden
+homepage: https://bitwarden.com/
+cliType: standalone
+region: global
+cliInstall:
+  - command: npm install -g @bitwarden/cli
+    official: true
+skillInstall: []
+openSourceDocsUrl: null
+officialDocsUrl: https://bitwarden.com/help/cli/
+status: active
+category: infra
+tags: [password-manager, security, vault, secrets]
+oneLiner: Open-source password manager with a full-featured CLI for vault access and secrets automation.
+description: >
+  Bitwarden provides a cross-platform CLI that lets you manage your entire vault from the terminal.
+  You can create, edit, and retrieve passwords, secure notes, and other items without opening the
+  desktop or browser app. The CLI also supports organization-level operations and can export or
+  import vault data in multiple formats.
+useCases:
+  - retrieve stored credentials and inject them into shell scripts or CI pipelines
+  - bulk-import or export vault items across accounts or organizations
+  - manage shared organization collections and user access from the terminal
+alternativesTo: [1Password]
