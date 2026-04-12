@@ -29,6 +29,10 @@ curl https://doesitcli.com/feishu.md                      # 单个应用
 
 Astro 6 · Tailwind · Vue 3 · Fuse.js · YAML content collections
 
+## 社区
+
+首发于 [LINUX DO](https://linux.do) — Where possible begins.
+
 ## 许可证
 
 [MIT](LICENSE) — fork 自 [doesitarm](https://github.com/ThatGuySam/doesitarm)。
